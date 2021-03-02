@@ -1,5 +1,5 @@
 {
-  "name": "sbgck-camera-api",
+  "name": "@sbgck/camera-api",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
