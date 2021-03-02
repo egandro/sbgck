@@ -4,7 +4,7 @@
 - SBGCK is designed as system that will be agnostic to the users platform
 - Supported platforms will be
   - Desktop system using a USB camera or IP camera
-  - Linux, Windows, macoS (We will also support smartphone [IP camera](https://play.google.com/store/apps/details?id=com.pas.webcam) software.)
+  - Linux, Windows, macoS (We will also support smartphone [IP camera](https://play.google.com/store/apps/details?id=com.pas.webcam) software).
   - Mobile system using the internal camera e.g. using a gooseneck stand
   - Android and iOS
   - Desktop Systems might get a sexy UI using Electron
