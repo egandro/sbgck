@@ -1,3 +1,3 @@
-#!/usr/bin/env node
+import { SBGCK } from "./modules";
 
-console.log("cli package");
+console.log("version: " + SBGCK.getVersion());

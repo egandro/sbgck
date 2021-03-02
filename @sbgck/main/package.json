@@ -2,8 +2,8 @@
   "name": "@sbgck/main",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/module.js",
-  "types": "./dist/module.d.ts",
+  "main": "dist/modules.js",
+  "types": "./dist/modules.d.ts",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "tsc",
