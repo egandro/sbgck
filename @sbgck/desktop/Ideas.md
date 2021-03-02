@@ -8,3 +8,14 @@ realworld: https://github.com/lwille/node-gphoto2/blob/master/binding.gyp
 
 Windows: chocolatey
 -> choco install visualstudio2017-workload-nodebuildtools
+
+
+We need a bg thread for playing audio: https://github.com/PortAudio/portaudio
+
+(in C++)
+
+For now we can go with a simple
+
+https://www.npmjs.com/package/play-sound
+
+(this is blocking because child process is used)

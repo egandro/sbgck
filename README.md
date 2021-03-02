@@ -1,3 +1,3 @@
-i# Smart Board Games Construction Kit
+# Smart Board Games Construction Kit
 
 
