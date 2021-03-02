@@ -1,30 +1,33 @@
 # Ideas
 
 - SBGCK is a platform for smart board games
-- SBGCK is designed as environment agnostic to the technology used
+- SBGCK is designed as system that will be agnostic to the users platform
 - Supported platforms will be
-  - Desktop system using a USB camera or IP camera (Camera Apps are supported, too)
-  - Linux, Windows, macoS
+  - Desktop system using a USB camera or IP camera
+  - Linux, Windows, macoS (We will also support smartphone IP camera software.)
   - Mobile system using the internal camera e.g. using a gooseneck stand
-
-  - Desktop Systems might contain a sexy UI using Electron
-- The games are made of "game files" (ZIP file containing am actual game)
-- The game language used is Typescript by using nodejs
+  - Android and iOS
+  - Desktop Systems might get a sexy UI using Electron
+- The games are made of "game files" (ZIP file containing an actual game)
+- The game language used will Typescript powered by nodejs
 - SBGCJ supports nodejs debugging (where available). There will be also some print based logger.
 
 
 ## SBGCK game files
 
-- contains javascript assets for game logic
+- contains Javascript/Typescript file for game logic
 - contains printable assets:
+  - this can be PNGs, PDFs, ..
+  - instruction, manual, ...
   - board
   - player tokens
   - player remote
   - dice board
-- contains OpenVC assets (used camera recognition)
-- contains mp3 assets (music, voice of the game)
-- contains UI assets  (optional UI used before game to configure/load game)
-- SBGCK might offer master game files or embedded game files for having common assets (assets for mp3, dice OpenCV, etc.)
+  - image maps (JSON)
+- contains OpenVC assets (images used as templates camera recognition)
+- contains MP3 assets (music, voice of the game)
+- contains UI assets (optional UI used before game to configure/load game, html, css, ...)
+- SBGCK might offer master game files or embedded game files for having common assets (default assets for MP3, dice OpenCV, library code, etc.)
 
 ## Ideas on OpenCV
 
@@ -32,7 +35,7 @@
 - If we want to go with mobile, Python can't be used for writing apps, Java can't be used for iOS.
 - The way to go is C++. We have this on Linux, Windows, macOS. It can be used as shared library in a node module. It can be used on iOS and Android.
 - Access to OpenCV will be provided by a JSON API we inject into NodeJS.
-- We will only provide limited access to features we want support to NodeJS.
+- We will only provide limited API to features we want support to NodeJS.
 
 ## Ideas on NodeJS
 
@@ -50,7 +53,7 @@
 
 ## Ideas for a UI
 
-- We will provide "sbgkc" for the node module (CLI for Windows, Linux, MacOS).
+- We will provide a simple cli in the "sbgkc" node module (Windows, Linux, MacOS).
 
 
 ## Ideas for a fancy UI (Desktop)
