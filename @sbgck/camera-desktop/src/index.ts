@@ -1,1 +1,3 @@
-console.log("hello world");
+const addon = require('../build/Release/addon');
+
+console.log(addon.hello());
