@@ -2,11 +2,12 @@
   "name": "@sbgck/main",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/module.js",
+  "types": "./dist/module.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepublish": "tsc"
+    "prepublishOnly": "tsc",
+    "prepare": "tsc"
   },
   "author": "",
   "license": "ISC",
