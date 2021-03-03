@@ -2,13 +2,14 @@
   "name": "@sbgck/desktop",
   "version": "0.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/modules.js",
+  "types": "./dist/modules.d.ts",
   "scripts": {
     "prepublishOnly": "tsc",
     "prepare": "tsc",
     "clean": "node-gyp clean",
     "config": "node-gyp configure",
+    "build": "tsc",
     "build:debug": "node-gyp build",
     "build:release": "node-gyp rebuild"
   },
