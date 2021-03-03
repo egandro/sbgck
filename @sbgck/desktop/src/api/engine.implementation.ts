@@ -1,4 +1,4 @@
-import { Engine } from "@sbgck/os-api";
+import { Engine } from '@sbgck/os-api';
 
 export class EngineImplementation implements Engine {
 	init(): boolean {

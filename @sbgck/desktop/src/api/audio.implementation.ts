@@ -1,6 +1,6 @@
-import { Audio } from "@sbgck/os-api";
+import { Audio } from '@sbgck/os-api';
 
-var player = require('play-sound')();
+const player = require('play-sound')();
 
 export class AudioImplementation implements Audio {
 	playMp3(fileName: string): boolean {

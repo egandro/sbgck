@@ -1,3 +1,5 @@
+import { AudioImplementation } from '@sbgck/desktop';
+
 import { FileManager } from '../filemanager';
 import { GameConfig } from './gameconfig';
 import { Event } from './event';
@@ -6,6 +8,11 @@ const pjson = require('../../package.json');
 
 export class SBGCK {
 	private gameConfig: GameConfig | null = null;
+	private audio: AudioImplementation | null = null;
+
+	constructor() {
+		this.audio = new AudioImplementation();
+	}
 
 	static getVersion(): string {
 		return pjson.version;
@@ -75,6 +82,9 @@ export class SBGCK {
 					return false;
 				}
 				console.log("playing mp3 file: ", filename);
+				if(this.audio != null) {
+					this.audio.playMp3(filename);
+				}
 				break;
 			}
 		}
