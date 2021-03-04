@@ -19,3 +19,17 @@ For now we can go with a simple
 https://www.npmjs.com/package/play-sound
 
 (this is blocking because child process is used)
+
+// arch for modules:
+
+https://stackoverflow.com/questions/17739095/changing-processor-architecture-with-node-gyp-configure
+
+// this is complex shit :(
+(https://nodeaddons.com/cross-platform-addons-with-node-pre-gyp/)
+
+https://www.docker.com/blog/multi-arch-images/
+https://www.stereolabs.com/docs/docker/building-arm-container-on-x86/
+
+// Cmake.js for multiple archs
+
+https://github.com/cmake-js/cmake-js/issues/200
