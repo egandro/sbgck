@@ -11,7 +11,7 @@ export enum CameraType {
 
 export interface CameraParameter {
 	name?: string,
+	cameraType?: CameraType,
 	url?: string,
 	fileName?: string,
-	cameraType?: CameraType
 }

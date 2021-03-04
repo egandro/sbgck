@@ -1,11 +1,10 @@
 import { AudioImplementation } from '@sbgck/desktop';
 
+import { CameraParameter } from './dto/cameraparameter';
 import { FileManager } from '../filemanager';
 import { GameConfig } from './dto/config/gameconfig';
-import { GameParameterBasic } from './dto/gameparameterbasic';
 import { Material } from './dto/material';
 import { Event } from './dto/event';
-
 
 const pjson = require('../../package.json');
 
@@ -14,34 +13,33 @@ export class SBGCK {
 	private gameConfig: GameConfig | null = null;
 	private audio: AudioImplementation | null = null;
 
+	static cameraParameter: CameraParameter;
+	static assetFolder: string;
+
 	static getVersion(): string {
 		return pjson.version;
 	}
 
-	constructor(gameConfigFilename: string, public gameParameter?: GameParameterBasic) {
+	constructor(gameConfigFilename: string) {
 		this.audio = new AudioImplementation();
 
-		if(this.gameParameter != null || this.gameParameter != undefined) {
-			if(this.gameParameter.assetFolder != null || this.gameParameter.assetFolder != undefined) {
-				this.fileManager.assetFolder = this.gameParameter.assetFolder;
-			}
-		}
+		this.fileManager.assetFolder = SBGCK.assetFolder;
 
-		if(!this.parseConfigFile(gameConfigFilename) || this.gameConfig == null) {
-			throw new Error( "can't parse gameconfig file.");
+		if (!this.parseConfigFile(gameConfigFilename) || this.gameConfig == null) {
+			throw new Error("can't parse gameconfig file.");
 		}
 	}
 
-	assignMaterial(assetName: string) : Material | null {
+	assignMaterial(assetName: string): Material | null {
 		return null;
 	}
 
-	removeMaterial(assetName: string) : Material | null {
+	removeMaterial(assetName: string): Material | null {
 		return null;
 	}
 
-	detectEvents() : Event[] {
-		const result : Event[] = [
+	detectEvents(): Event[] {
+		const result: Event[] = [
 			{
 				type: "token"
 			}
@@ -49,19 +47,19 @@ export class SBGCK {
 		return result;
 	}
 
-	playMp3ById(id: string) : boolean {
+	playMp3ById(id: string): boolean {
 		if (this.gameConfig == null || this.gameConfig.mp3s == null) {
 			return false;
 		}
 
-		for(const mp3 of this.gameConfig.mp3s) {
-			if( mp3.id == id) {
+		for (const mp3 of this.gameConfig.mp3s) {
+			if (mp3.id == id) {
 				const filename = this.fileManager.vfsResolveFile(mp3.file);
 				if (filename == null) {
 					return false;
 				}
-				console.log("playing mp3 file: ", filename);
-				if(this.audio != null) {
+				console.log("playing mp3 file:", filename);
+				if (this.audio != null) {
 					this.audio.playMp3(filename);
 				}
 				break;
@@ -73,14 +71,26 @@ export class SBGCK {
 
 	begin(): boolean {
 		if (this.gameConfig == null) {
-			return false;
+			throw new Error("no game config");
 		}
 
-		console.log("name", this.gameConfig.name);
-		console.log("default board", this.gameConfig.boards[0].name);
-		console.log("template file (vfs)", this.fileManager.vfsResolveFile(this.gameConfig.boards[0].templateFile));
-		console.log("map json file (vfs)", this.fileManager.vfsResolveFile(this.gameConfig.boards[0].mapJsonFile));
+		console.log("game name:", this.gameConfig.name);
+		console.log("game default board:", this.gameConfig.boards[0].name);
+		console.log("main board template file (vfs):", this.fileManager.vfsResolveFile(this.gameConfig.boards[0].templateFile));
+		console.log("main board map json file (vfs):", this.fileManager.vfsResolveFile(this.gameConfig.boards[0].mapJsonFile));
 
+		if (SBGCK.cameraParameter == null) {
+			throw new Error("no camera parameters");
+		}
+
+		console.log("camera name:", SBGCK.cameraParameter.name);
+		console.log("camera cameraType:", SBGCK.cameraParameter.cameraType);
+		if (SBGCK.cameraParameter.url) {
+			console.log("camera url:", SBGCK.cameraParameter.url);
+		}
+		if (SBGCK.cameraParameter.fileName) {
+			console.log("camera fileName:", SBGCK.cameraParameter.fileName);
+		}
 
 		return true;
 	}
