@@ -32,8 +32,9 @@ export class FileManager {
 
         if(hints == null || hints == undefined) {
             hints = [];
-            hints.push('mp3');
-            hints.push('board');
+            hints.push('mp3s');
+            hints.push('boards');
+            hints.push('assets');
         }
 
         if (fileExist == false) {

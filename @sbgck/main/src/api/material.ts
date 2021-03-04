@@ -1,4 +1,6 @@
+
+import { Asset } from './config/asset';
 export interface Material {
-	name: string,
-	templateFile: string,
+	id: string,
+	asset: Asset
 }

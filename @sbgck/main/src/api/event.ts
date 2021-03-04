@@ -1,6 +1,6 @@
 export interface Event {
 	type: string,
-	bondingbox?: number[],
+	bondingBox?: number[],
 	center?: number[],
 	area?: string
 }

@@ -1,7 +1,8 @@
 import { AudioImplementation } from '@sbgck/desktop';
 
 import { FileManager } from '../filemanager';
-import { GameConfig } from './gameconfig';
+import { GameConfig } from './config/gameconfig';
+import { Material } from './material';
 import { Event } from './event';
 
 const pjson = require('../../package.json');
@@ -53,12 +54,12 @@ export class SBGCK {
 		return true;
 	}
 
-	assignToken(name: string) : boolean {
-		return false;
+	assignMaterial(assetName: string) : Material | null {
+		return null;
 	}
 
-	removeToken(name: string) : boolean {
-		return false;
+	removeMaterial(assetName: string) : Material | null {
+		return null;
 	}
 
 	detectEvents() : Event[] {
