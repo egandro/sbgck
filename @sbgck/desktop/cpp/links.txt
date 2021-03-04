@@ -1,0 +1,7 @@
+https://stackoverflow.com/questions/7724569/debug-vs-release-in-cmake
+
+debug, release
+
+https://stackoverflow.com/questions/38675403/how-to-config-cmake-for-strip-file
+
+strip
