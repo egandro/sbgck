@@ -1,57 +1,35 @@
 import { AudioImplementation } from '@sbgck/desktop';
 
 import { FileManager } from '../filemanager';
-import { GameConfig } from './config/gameconfig';
-import { Material } from './material';
-import { Event } from './event';
+import { GameConfig } from './dto/config/gameconfig';
+import { GameParameterBasic } from './dto/gameparameterbasic';
+import { Material } from './dto/material';
+import { Event } from './dto/event';
+
 
 const pjson = require('../../package.json');
 
 export class SBGCK {
+	private fileManager: FileManager = new FileManager();
 	private gameConfig: GameConfig | null = null;
 	private audio: AudioImplementation | null = null;
-
-	constructor() {
-		this.audio = new AudioImplementation();
-	}
 
 	static getVersion(): string {
 		return pjson.version;
 	}
 
-	public set assetFolder(value: string) {
-		FileManager.assetFolder = value;
-	}
+	constructor(gameConfigFilename: string, public gameParameter?: GameParameterBasic) {
+		this.audio = new AudioImplementation();
 
-	configFile(filename: string): boolean {
-		let data = FileManager.readAsString(filename);
-		if (data == null) {
-			return false;
-		}
-
-		this.gameConfig = JSON.parse(data);
-
-		if (this.gameConfig != null) {
-			data = FileManager.vfsReadAsString(this.gameConfig.mp3JsonFile);
-			if (data != null) {
-				this.gameConfig.mp3s = JSON.parse(data);
+		if(this.gameParameter != null || this.gameParameter != undefined) {
+			if(this.gameParameter.assetFolder != null || this.gameParameter.assetFolder != undefined) {
+				this.fileManager.assetFolder = this.gameParameter.assetFolder;
 			}
 		}
 
-		return true;
-	}
-
-	begin(): boolean {
-		if (this.gameConfig == null) {
-			return false;
+		if(!this.parseConfigFile(gameConfigFilename) || this.gameConfig == null) {
+			throw new Error( "can't parse gameconfig file.");
 		}
-
-		console.log("name", this.gameConfig.name);
-		console.log("default board", this.gameConfig.boards[0].name);
-		console.log("template file (vfs)", FileManager.vfsResolveFile(this.gameConfig.boards[0].templateFile));
-		console.log("map json file (vfs)", FileManager.vfsResolveFile(this.gameConfig.boards[0].mapJsonFile));
-
-		return true;
 	}
 
 	assignMaterial(assetName: string) : Material | null {
@@ -78,7 +56,7 @@ export class SBGCK {
 
 		for(const mp3 of this.gameConfig.mp3s) {
 			if( mp3.id == id) {
-				const filename = FileManager.vfsResolveFile(mp3.file);
+				const filename = this.fileManager.vfsResolveFile(mp3.file);
 				if (filename == null) {
 					return false;
 				}
@@ -93,4 +71,43 @@ export class SBGCK {
 		return false;
 	}
 
+	begin(): boolean {
+		if (this.gameConfig == null) {
+			return false;
+		}
+
+		console.log("name", this.gameConfig.name);
+		console.log("default board", this.gameConfig.boards[0].name);
+		console.log("template file (vfs)", this.fileManager.vfsResolveFile(this.gameConfig.boards[0].templateFile));
+		console.log("map json file (vfs)", this.fileManager.vfsResolveFile(this.gameConfig.boards[0].mapJsonFile));
+
+
+		return true;
+	}
+
+	end(): boolean {
+		if (this.gameConfig == null) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private parseConfigFile(filename: string): boolean {
+		let data = this.fileManager.readAsString(filename);
+		if (data == null) {
+			return false;
+		}
+
+		this.gameConfig = JSON.parse(data);
+
+		if (this.gameConfig != null) {
+			data = this.fileManager.vfsReadAsString(this.gameConfig.mp3JsonFile);
+			if (data != null) {
+				this.gameConfig.mp3s = JSON.parse(data);
+			}
+		}
+
+		return true;
+	}
 }

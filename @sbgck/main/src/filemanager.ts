@@ -2,23 +2,23 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 export class FileManager {
-    static assetFolder: string = '';
+    public assetFolder: string = '';
 
-    static fileExists(filename: string): boolean {
+    fileExists(filename: string): boolean {
         if (!fs.existsSync(filename)) {
             return false;
         }
         return true;
     }
 
-    static readAsString(filename: string): string | null {
-        if (!FileManager.fileExists(filename)) {
+    readAsString(filename: string): string | null {
+        if (!this.fileExists(filename)) {
             return null;
         }
         return fs.readFileSync(filename, 'utf8');
     }
 
-    static vfsResolveFile(baseFileName: string | null | undefined, hints?: string[]): string | null {
+    vfsResolveFile(baseFileName: string | null | undefined, hints?: string[]): string | null {
         if(baseFileName == null || baseFileName == undefined) {
             return null;
         }
@@ -26,7 +26,7 @@ export class FileManager {
         let filename = path.join(this.assetFolder, baseFileName);
 
         let fileExist = false;
-        if (FileManager.fileExists(filename)) {
+        if (this.fileExists(filename)) {
             fileExist = true;
         }
 
@@ -41,7 +41,7 @@ export class FileManager {
             for (var hint of hints) {
                 filename = path.join(this.assetFolder, hint, baseFileName);
 
-                if (FileManager.fileExists(filename)) {
+                if (this.fileExists(filename)) {
                     fileExist = true;
                     break;
                 }
@@ -55,8 +55,8 @@ export class FileManager {
         return filename;
     }
 
-    static vfsReadAsString(baseFileName: string, hints?: string[]): string | null {
-        const filename = FileManager.vfsResolveFile(baseFileName, hints);
+    vfsReadAsString(baseFileName: string, hints?: string[]): string | null {
+        const filename = this.vfsResolveFile(baseFileName, hints);
 
         if (filename == null) {
             return null;
