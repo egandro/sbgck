@@ -1,0 +1,12 @@
+https://stackoverflow.com/questions/7724569/debug-vs-release-in-cmake
+
+# napi - https://github.com/cmake-js/cmake-js#usage
+# json - https://github.com/nlohmann/json
+
+debug, release
+
+https://stackoverflow.com/questions/38675403/how-to-config-cmake-for-strip-file
+
+strip
+
+// https://docs.opencv.org/master/db/df5/tutorial_linux_gcc_cmake.html
