@@ -75,9 +75,9 @@ export class SBGCK {
 		}
 
 		console.log("game name:", this.gameConfig.name);
-		console.log("game default board:", this.gameConfig.boards[0].name);
-		console.log("main board template file (vfs):", this.fileManager.vfsResolveFile(this.gameConfig.boards[0].templateFile));
-		console.log("main board map json file (vfs):", this.fileManager.vfsResolveFile(this.gameConfig.boards[0].mapJsonFile));
+		console.log("default board:", this.gameConfig.boards[0].name);
+		console.log("default board template file (vfs):", this.fileManager.vfsResolveFile(this.gameConfig.boards[0].templateFile));
+		console.log("default board map json file (vfs):", this.fileManager.vfsResolveFile(this.gameConfig.boards[0].mapJsonFile));
 
 		if (SBGCK.cameraParameter == null) {
 			throw new Error("no camera parameters");
