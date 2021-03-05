@@ -9,6 +9,10 @@
 #include "version.hpp"
 
 
+#include "log.hpp"
+
+structlog LOGCFG = {};
+
 namespace sbgck
 {
   using v8::Exception;
@@ -101,7 +105,11 @@ namespace sbgck
     {
       // https://stackoverflow.com/questions/62370534/how-to-convert-node-v8-string-to-c-string
       String::Utf8Value str(isolate, args[0]);
-      j = json::parse(*str);
+      try {
+        j = json::parse(*str);
+      } catch(json::exception& e) {
+       Log(INFO) << "json::exception in string: '" << *str << "'";
+      }
     }
     else if (args[0]->IsObject())
     {
@@ -147,6 +155,9 @@ namespace sbgck
 
   void Initialize(Local<Object> exports)
   {
+    LOGCFG.headers = false;
+    LOGCFG.level = DEBUG;
+
     NODE_SET_METHOD(exports, "hello", MethodHelloWorld);
     NODE_SET_METHOD(exports, "version", MethodGetOpenCVVersion);
     NODE_SET_METHOD(exports, "add", MethodAdd);

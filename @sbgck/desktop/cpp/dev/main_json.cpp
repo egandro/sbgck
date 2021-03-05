@@ -1,21 +1,28 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
+#include "log.hpp"
+
 using json = nlohmann::json;
+
+structlog LOGCFG = {};
 
 int main(int argc, char **argv)
 {
+    LOGCFG.headers = false;
+    LOGCFG.level = DEBUG;
+
     // https://github.com/nlohmann/json
 
     auto j = json::parse("{ \"happy\": true, \"name\": \"foo\", \"pi\": 3.141 }");
 
     // explicit conversion to string
     std::string s = j.dump();
-    std::cout << s << std::endl;
+    Log(DEBUG) << s;
 
     // serialization with pretty printing
     // pass in the amount of spaces to indent
-    std::cout << j.dump(4) << std::endl;
+    Log(DEBUG) << j.dump(4);
 
 
     float pi = j["pi"].get<float>();
@@ -23,7 +30,7 @@ int main(int argc, char **argv)
     std::string name = j["name"].get<std::string>();
 
 
-    std::cout << pi << " " <<  happy << " " <<  name << std::endl;
+    Log(DEBUG) << pi << " " <<  happy << " " <<  name;
 
     return 0;
 }

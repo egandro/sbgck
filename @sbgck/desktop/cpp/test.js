@@ -9,3 +9,4 @@ var data = {
 console.log(desktop.json(data));
 
 console.log(desktop.hello());
+console.log(desktop.json("dead beef"));
