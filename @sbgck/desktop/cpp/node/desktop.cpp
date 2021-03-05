@@ -160,7 +160,7 @@ namespace sbgck
   {
     if (getenv("DEBUG"))
     {
-      LOGCFG.prefix = (char *)NODE_MODULE_NAME;
+      LOGCFG.prefix = (char *)NODE_STRINGIFY(NODE_MODULE_NAME);
       LOGCFG.headers = true;
       LOGCFG.level = DEBUG;
     }
