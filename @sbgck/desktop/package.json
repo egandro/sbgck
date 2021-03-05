@@ -13,7 +13,7 @@
     "build:debug": "echo node-gyp build",
     "build:release": "echo node-gyp rebuild",
     "buildcpp": "cmake-js compile",
-    "install": "cmake-js compile"
+    "installx": "cmake-js compile"
   },
   "author": "",
   "license": "ISC",
@@ -25,7 +25,6 @@
   },
   "gypfile": true,
   "dependencies": {
-    "nan": "^2.14.2",
     "play-sound": "^1.1.3"
   }
 }

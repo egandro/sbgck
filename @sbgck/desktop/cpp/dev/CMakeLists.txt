@@ -1,14 +1,19 @@
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-
-set(CMAKE_CXX_FLAGS_DEBUG_INIT "-Wall")
-set(CMAKE_CXX_FLAGS_RELEASE_INIT "-Wall")
+cmake_minimum_required(VERSION 2.8)
 
 project( opencvtest )
-cmake_minimum_required(VERSION 2.8)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+## set(CMAKE_CXX_FLAGS_DEBUG_INIT "-Wall")
+## set(CMAKE_CXX_FLAGS_RELEASE_INIT "-Wall")
+
 find_package( OpenCV REQUIRED )
+
 include_directories( ${OpenCV_INCLUDE_DIRS} "../opencv/" )
 file(GLOB SOURCE_FILES "../opencv/*.cpp" "../opencv/*.hpp")
 
-add_executable( displayimage ${SOURCE_FILES} main.cpp )
-target_link_libraries( displayimage ${OpenCV_LIBS} )
+add_executable( main_displayimage ${SOURCE_FILES} main_displayimage.cpp )
+target_link_libraries( main_displayimage ${OpenCV_LIBS} )
+
+add_executable( main_json ${SOURCE_FILES} main_json.cpp )
+target_link_libraries( main_json ${OpenCV_LIBS} )
