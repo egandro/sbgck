@@ -1,6 +1,6 @@
 import { AudioImplementation } from '@sbgck/desktop';
 
-import { CameraParameter } from './dto/cameraparameter';
+import { CameraConfig } from './dto/cameraconfig';
 import { FileManager } from '../filemanager';
 import { GameConfig } from './dto/config/gameconfig';
 import { Material } from './dto/material';
@@ -13,7 +13,7 @@ export class SBGCK {
 	private gameConfig: GameConfig | null = null;
 	private audio: AudioImplementation | null = null;
 
-	static cameraParameter: CameraParameter;
+	static cameraConfig: CameraConfig;
 	static assetFolder: string;
 
 	static getVersion(): string {

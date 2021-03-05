@@ -13,6 +13,7 @@
     "build:debug": "echo node-gyp build",
     "build:release": "echo node-gyp rebuild",
     "buildcpp": "cmake-js build",
+    "rebuildcpp": "cmake-js rebuild",
     "install": "cmake-js compile"
   },
   "author": "",

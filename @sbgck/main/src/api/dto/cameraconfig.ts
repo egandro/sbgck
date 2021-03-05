@@ -1,15 +1,14 @@
 
 export enum CameraType {
 	Unknown = 'Unknown',
-	MobileFront = 'MobileFront',
-	MobileBack = 'MobileBack',
-	MobileCustom = 'MobileCustom',
-	USB = 'USB',
+	Default = 'Default',
+	Camera0 = 'Camera0',
+	Camera1 = 'Camera1',
 	IPCamera = 'IPCamera',
 	DebugFile = 'DebugFile',
 }
 
-export interface CameraParameter {
+export interface CameraConfig {
 	name?: string,
 	cameraType?: CameraType,
 	url?: string,
