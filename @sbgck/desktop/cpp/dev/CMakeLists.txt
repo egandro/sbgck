@@ -12,9 +12,6 @@ find_package( OpenCV REQUIRED )
 include_directories( ${OpenCV_INCLUDE_DIRS} "../opencv/" )
 file(GLOB SOURCE_FILES "../opencv/*.cpp" "../opencv/*.hpp")
 
-# add_executable( main_displayimage ${SOURCE_FILES} main_displayimage.cpp )
-# target_link_libraries( main_displayimage ${OpenCV_LIBS} )
-
 # add_executable( main_json ${SOURCE_FILES} main_json.cpp )
 # target_link_libraries( main_json ${OpenCV_LIBS} )
 
