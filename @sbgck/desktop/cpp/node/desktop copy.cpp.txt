@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include <node.h>
+#pragma GCC diagnostic ignored "-Wpsabi"
 #include <nlohmann/json.hpp>
 
 #include "displayimage.hpp"
