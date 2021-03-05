@@ -12,8 +12,8 @@
     "build": "tsc",
     "build:debug": "echo node-gyp build",
     "build:release": "echo node-gyp rebuild",
-    "buildcpp": "cmake-js compile",
-    "installx": "cmake-js compile"
+    "buildcpp": "cmake-js build",
+    "install": "cmake-js compile"
   },
   "author": "",
   "license": "ISC",
