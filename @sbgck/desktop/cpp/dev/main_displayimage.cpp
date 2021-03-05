@@ -20,7 +20,5 @@ int main(int argc, char **argv)
     {
         return -1;
     }
-
-    waitKey(0);
     return 0;
 }

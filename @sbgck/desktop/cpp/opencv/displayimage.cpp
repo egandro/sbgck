@@ -17,5 +17,6 @@ bool displayImage(const char *fileName)
     printf("displayImage %s\n", fileName);
     namedWindow("Display Image", WINDOW_AUTOSIZE);
     imshow("Display Image", image);
+    waitKey(0);
     return true;
 }
