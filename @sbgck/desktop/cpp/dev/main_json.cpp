@@ -9,7 +9,8 @@ structlog LOGCFG = {};
 
 int main(int argc, char **argv)
 {
-    LOGCFG.headers = false;
+    LOGCFG.prefix = (char*)"main_json";
+    LOGCFG.headers = true;
     LOGCFG.level = DEBUG;
 
     // https://github.com/nlohmann/json

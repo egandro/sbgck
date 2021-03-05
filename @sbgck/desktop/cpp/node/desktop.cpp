@@ -1,4 +1,5 @@
 // hello.cc using Node-API
+#include <stdlib.h>
 #include <string>
 #include <sstream>
 #include <iostream>
@@ -7,7 +8,6 @@
 
 #include "displayimage.hpp"
 #include "version.hpp"
-
 
 #include "log.hpp"
 
@@ -105,10 +105,13 @@ namespace sbgck
     {
       // https://stackoverflow.com/questions/62370534/how-to-convert-node-v8-string-to-c-string
       String::Utf8Value str(isolate, args[0]);
-      try {
+      try
+      {
         j = json::parse(*str);
-      } catch(json::exception& e) {
-       Log(INFO) << "json::exception in string: '" << *str << "'";
+      }
+      catch (json::exception &e)
+      {
+        Log(INFO) << "json::exception parsing string: '" << *str << "'";
       }
     }
     else if (args[0]->IsObject())
@@ -155,8 +158,12 @@ namespace sbgck
 
   void Initialize(Local<Object> exports)
   {
-    LOGCFG.headers = false;
-    LOGCFG.level = DEBUG;
+    if (getenv("DEBUG"))
+    {
+      LOGCFG.prefix = (char *)NODE_MODULE_NAME;
+      LOGCFG.headers = true;
+      LOGCFG.level = DEBUG;
+    }
 
     NODE_SET_METHOD(exports, "hello", MethodHelloWorld);
     NODE_SET_METHOD(exports, "version", MethodGetOpenCVVersion);

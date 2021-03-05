@@ -26,6 +26,7 @@ struct structlog
 {
     bool headers = false;
     typelog level = WARN;
+    char *prefix = NULL;
 };
 
 extern structlog LOGCFG;
@@ -37,9 +38,23 @@ public:
     Log(typelog type)
     {
         msglevel = type;
+        if (LOGCFG.prefix)
+        {
+            operator<< (LOGCFG.prefix);
+            if (LOGCFG.headers)
+            {
+                operator<< (" ");
+            }
+        }
         if (LOGCFG.headers)
         {
-            operator<<("[" + getLabel(type) + "]");
+            operator<<(getLabel(type));
+        }
+
+        if (LOGCFG.prefix || LOGCFG.headers)
+        {
+
+            operator<<(": ");
         }
     }
     ~Log()
@@ -73,10 +88,10 @@ private:
             label = "DEBUG";
             break;
         case INFO:
-            label = "INFO ";
+            label = "INFO";
             break;
         case WARN:
-            label = "WARN ";
+            label = "WARN";
             break;
         case ERROR:
             label = "ERROR";
