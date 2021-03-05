@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 2.8)
 project(desktop)
 
 # opencv
-find_package( OpenCV REQUIRED )
+find_package(OpenCV REQUIRED)
 
 # Build a shared library named after the project from the files in `src/`
 file(GLOB SOURCE_FILES "cpp/opencv/*.cpp" "cpp/opencv/*.hpp" "cpp/node/*.cpp" "cpp/node/*.hpp")
