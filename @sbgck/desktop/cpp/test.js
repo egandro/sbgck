@@ -1,4 +1,5 @@
 const desktop = require('../build/Release/desktop');
+
 console.log(desktop.hello());
 console.log(desktop.version());
 console.log(desktop.add(1, 3));

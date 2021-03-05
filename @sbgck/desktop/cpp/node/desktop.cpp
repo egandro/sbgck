@@ -12,12 +12,12 @@ namespace sbgck
   using v8::Exception;
   using v8::FunctionCallbackInfo;
   using v8::Isolate;
+  using v8::JSON;
   using v8::Local;
   using v8::Number;
   using v8::Object;
   using v8::String;
   using v8::Value;
-  using v8::JSON;
 
   using json = nlohmann::json;
 
@@ -105,7 +105,7 @@ namespace sbgck
       // https://github.com/nodejs/node-addon-examples/issues/136
       // https://nodeaddons.com/c-processing-from-node-js-part-2/
       auto json = JSON::Stringify(Isolate::GetCurrent()->GetCurrentContext(), args[0]).ToLocalChecked();
-      String::Utf8Value str (isolate, json);
+      String::Utf8Value str(isolate, json);
       j = json::parse(*str);
     }
 
@@ -126,15 +126,17 @@ namespace sbgck
       j["name"] = name + " changed";
 
       std::ostringstream oss;
-      oss << (void *)&name;
+      oss << (void *)name.c_str();
       std::string s(oss.str());
 
       j["id_from_pointer"] = s;
 
       Local<String> jsonString = String::NewFromUtf8(isolate,
-                            j.dump().c_str()).ToLocalChecked();
+                                                     j.dump().c_str())
+                                     .ToLocalChecked();
       Local<Value> jsonObject = JSON::Parse(Isolate::GetCurrent()->GetCurrentContext(),
-              Local<String>::Cast(jsonString)).ToLocalChecked();
+                                            Local<String>::Cast(jsonString))
+                                    .ToLocalChecked();
 
       args.GetReturnValue().Set(jsonObject);
     }

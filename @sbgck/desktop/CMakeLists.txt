@@ -3,10 +3,11 @@
 # https://github.com/cmake-js/cmake-js/wiki/TUTORIAL-01-Creating-a-native-module-by-using-CMake.js-and-NAN
 cmake_minimum_required(VERSION 2.8)
 
-find_package( OpenCV REQUIRED )
-
 # Name of the project (will be the name of the plugin)
 project(desktop)
+
+# opencv
+find_package( OpenCV REQUIRED )
 
 # Build a shared library named after the project from the files in `src/`
 file(GLOB SOURCE_FILES "cpp/opencv/*.cpp" "cpp/opencv/*.hpp" "cpp/node/*.cpp" "cpp/node/*.hpp")
