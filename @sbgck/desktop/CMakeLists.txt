@@ -13,6 +13,9 @@ find_package( OpenCV REQUIRED )
 file(GLOB SOURCE_FILES "cpp/opencv/*.cpp" "cpp/opencv/*.hpp" "cpp/node/*.cpp" "cpp/node/*.hpp")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC})
 
+# needed for the logger
+add_definitions(-DNODE_MODULE_NAME="${CMAKE_PROJECT_NAME}")
+
 # Gives our library file a .node extension without any "lib" prefix
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 

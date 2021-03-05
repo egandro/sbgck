@@ -7,7 +7,7 @@
                 "${workspaceFolder}/cpp/opencv",
                 "/usr/include/node"
             ],
-            "defines": [],
+            "defines": ["NODE_MODULE_NAME"],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "gnu17",
             "cppStandard": "gnu++14",
