@@ -2,45 +2,78 @@
 #include "assetmanager.hpp"
 #include "log.hpp"
 
-std::list<Mat> AssetManager::boards;
-std::list<Mat> AssetManager::assets;
-Mat AssetManager::currentBoard;
+std::list<Asset> AssetManager::boards;
+std::list<Asset> AssetManager::assets;
+Asset *AssetManager::currentBoard = NULL;
 
-Mat AssetManager::addBoard(const char *fileName)
+Asset &AssetManager::addBoard(const char *fileName)
 {
     Log(INFO) << "AssetManager addBoard";
 
-    Mat img = imread(fileName, IMREAD_UNCHANGED);
-    AssetManager::boards.push_back(img);
-    return img;
+    for (std::list<Asset>::iterator it = AssetManager::boards.begin();
+         it != AssetManager::boards.end();
+         ++it)
+    {
+        if( strncmp((*it).fileName.c_str(), fileName, (*it).fileName.length() == 0) ) {
+            Log(INFO) << "already have that board " << fileName;
+            return (*it);
+        }
+    }
+
+    Asset *asset = new Asset();
+    asset->fileName = std::string(fileName);
+    asset->material = imread(fileName, IMREAD_UNCHANGED);
+    AssetManager::boards.push_back(*asset);
+
+    return *asset;
 }
 
-Mat AssetManager::addAsset(const char *fileName)
+Asset &AssetManager::addAsset(const char *fileName)
 {
     Log(INFO) << "AssetManager addAsset";
 
-    Mat img = imread(fileName, IMREAD_UNCHANGED);
-    AssetManager::assets.push_back(img);
-    return img;
+    for (std::list<Asset>::iterator it = AssetManager::assets.begin();
+         it != AssetManager::assets.end();
+         ++it)
+    {
+        if( strncmp((*it).fileName.c_str(), fileName, (*it).fileName.length() == 0) ) {
+            Log(INFO) << "already have that asset " << fileName;
+            return (*it);
+        }
+    }
+
+    Asset *asset = new Asset();
+    asset->fileName = std::string(fileName);
+    asset->material = imread(fileName, IMREAD_UNCHANGED);
+    AssetManager::assets.push_back(*asset);
+
+    return *asset;
+}
+
+void AssetManager::setCurrentBoard(Asset &value)
+{
+    Log(INFO) << "AssetManager setCurrentBoard";
+
+    AssetManager::currentBoard = NULL;
+
+    for (std::list<Asset>::iterator it = AssetManager::boards.begin();
+         it != AssetManager::boards.end();
+         ++it)
+    {
+        if( strncmp((*it).fileName.c_str(), value.fileName.c_str(), value.fileName.length()) == 0 ) {
+            AssetManager::currentBoard = &(*it);
+            return;
+        }
+    }
+
+    Log(DEBUG) << "Asset is no board";
 }
 
 void AssetManager::release()
 {
     Log(INFO) << "AssetManager release";
 
-    AssetManager::currentBoard.release();
-
-    std::list<Mat>::iterator it;
-
-    for (it = AssetManager::boards.begin(); it != AssetManager::boards.end(); ++it)
-    {
-        (*it).release();
-    }
+    AssetManager::currentBoard = NULL;
     AssetManager::boards.clear();
-
-    for (it = AssetManager::assets.begin(); it != AssetManager::assets.end(); ++it)
-    {
-        (*it).release();
-    }
     AssetManager::assets.clear();
 }

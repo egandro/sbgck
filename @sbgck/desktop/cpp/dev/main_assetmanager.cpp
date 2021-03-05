@@ -20,7 +20,7 @@ int main(int argc, char **argv)
         return -1;
     }
 
-    Mat board = AssetManager::addBoard(argv[1]);
+    Asset board = AssetManager::addBoard(argv[1]);
     AssetManager::setCurrentBoard(board);
 
     AssetManager::addAsset(argv[1]);

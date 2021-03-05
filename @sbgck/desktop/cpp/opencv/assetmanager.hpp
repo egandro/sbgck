@@ -1,28 +1,45 @@
 #ifndef ASSETMANAGER_H
 #define ASSETMANAGER_H
 
+//#include "log.hpp"
 #include "opencv2/opencv.hpp"
 
 using namespace cv;
 
+class Asset {
+    public:
+    std::string fileName;
+    Mat material;
+
+    Asset() {}
+
+    Asset(const Asset &value) {
+        fileName = value.fileName;
+        material = value.material;
+    }
+
+    ~Asset() {
+        material.release();
+        //Log(DEBUG) << "~Asset";
+    }
+};
+
 class AssetManager
 {
 private:
-    static std::list<Mat> boards;
-    static std::list<Mat> assets;
-    static Mat currentBoard;
+    static std::list<Asset> boards;
+    static std::list<Asset> assets;
+    static Asset *currentBoard;
 
 public:
-    static Mat addBoard(const char *fileName);
-    static Mat addAsset(const char *fileName);
+    static Asset& addBoard(const char *fileName);
+    static Asset& addAsset(const char *fileName);
 
-    static Mat getCurrentBoard() {
+    static Asset * getCurrentBoard() {
         return AssetManager::currentBoard;
     }
 
-    static void setCurrentBoard(Mat value){
-        AssetManager::currentBoard = value;
-    }
+    static void setCurrentBoard(Asset& value);
 
     static void release();
 };
