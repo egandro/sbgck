@@ -27,7 +27,7 @@ namespace sbgck
   {
     Isolate *isolate = args.GetIsolate();
     args.GetReturnValue().Set(String::NewFromUtf8(isolate, "world").ToLocalChecked());
-    displayImage("/home/pi/projects/opencv/VideoCaptureTest/frame.png");
+    //displayImage("/home/pi/projects/opencv/VideoCaptureTest/frame.png");
   }
 
   void MethodGetOpenCVVersion(const FunctionCallbackInfo<Value> &args)
