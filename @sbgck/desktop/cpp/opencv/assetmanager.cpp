@@ -20,6 +20,8 @@ Asset &AssetManager::addBoard(const char *fileName)
         }
     }
 
+    Log(INFO) << "AssetManager added board " << fileName;
+
     Asset *asset = new Asset();
     asset->fileName = std::string(fileName);
     asset->material = imread(fileName, IMREAD_UNCHANGED);
@@ -42,6 +44,8 @@ Asset &AssetManager::addAsset(const char *fileName)
         }
     }
 
+    Log(INFO) << "AssetManager added asset " << fileName;
+
     Asset *asset = new Asset();
     asset->fileName = std::string(fileName);
     asset->material = imread(fileName, IMREAD_UNCHANGED);
@@ -62,6 +66,7 @@ void AssetManager::setCurrentBoard(Asset &value)
     {
         if( strncmp((*it).fileName.c_str(), value.fileName.c_str(), value.fileName.length()) == 0 ) {
             AssetManager::currentBoard = &(*it);
+            Log(INFO) << "AssetManager current board is now " << value.fileName;
             return;
         }
     }
