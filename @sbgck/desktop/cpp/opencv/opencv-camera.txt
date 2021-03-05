@@ -6,7 +6,7 @@ https://stackoverflow.com/questions/50870405/how-can-i-zoom-my-webcam-in-open-cv
 
 https://github.com/harimkang/openCV-with-Zoom
 
-Properties
+Camera properties Properties
 
 https://answers.opencv.org/question/175793/why-am-i-not-able-to-change-all-settings-of-logitech-c920-camera-using-opencv-python/
 
