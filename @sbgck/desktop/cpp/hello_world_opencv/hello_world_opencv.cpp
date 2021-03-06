@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
@@ -5,6 +7,9 @@ using namespace cv;
 
 int main(int argc, char** argv) {
 
+    printf("open cv version: %s\n", CV_VERSION);
+
+#ifdef XXX
     //create a gui window:
     namedWindow("Output",1);
 
@@ -25,7 +30,7 @@ int main(int argc, char** argv) {
 
     //wait for the user to press any key:
     waitKey(0);
-
+#endif
     return 0;
 
 }

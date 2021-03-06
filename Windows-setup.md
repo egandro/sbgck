@@ -16,7 +16,10 @@
   - Add this variables to the environment (must be done with the UI not on a cmd prompt)
   - OPENCV_DIR=C:\tools\opencv\build
   - PATH append this %OPENCV_DIR%\x64\vc15\bin
-
+- https://nhancv.medium.com/build-opencv-opencv-contrib-on-windows-2e3b1ca96955
+- https://cv-tricks.com/how-to/installation-of-opencv-4-1-0-in-windows-10-from-source/
+- https://github.com/nut-tree/npm-opencv-build#readme
+- https://github.com/nut-tree/opencv4nodejs
 
 # Consistency checks
 
@@ -24,7 +27,9 @@
   - Visual Studio Command Prompt (my be here: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 201x\Visual Studio Tools) - change x :)
   - cd @sbgck\desktop\cpp\hello_world_opencv
   - mkdir build
+  - cd build
   - cmake ..
-  - msbuild ALL_BUILD.vcxproj
+  - cmake --build . --config Release
+  - Release\hello_world_opencv.exe
 - TBD add more
 
