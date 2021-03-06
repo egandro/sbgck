@@ -2,6 +2,7 @@
 
 #include "assetmanager.hpp"
 #include "camera.hpp"
+#include "imagedetection.hpp"
 
 #include "log.hpp"
 
@@ -40,6 +41,8 @@ int main(int argc, char **argv)
 
     Camera camPtr(cfg);
     Mat frame = camPtr.getFrame();
+
+    ImageDetection::detectTemplate(frame, AssetManager::getCurrentBoard()->material);
 
     imwrite(argv[3], frame);
     return 0;
