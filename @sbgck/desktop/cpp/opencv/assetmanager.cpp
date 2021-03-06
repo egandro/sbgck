@@ -6,7 +6,7 @@ std::list<Asset> AssetManager::boards;
 std::list<Asset> AssetManager::assets;
 Asset *AssetManager::currentBoard = NULL;
 
-Asset &AssetManager::addBoard(const char *fileName)
+Asset AssetManager::addBoard(const char *fileName)
 {
     Log(INFO) << "AssetManager addBoard";
 
@@ -14,7 +14,8 @@ Asset &AssetManager::addBoard(const char *fileName)
          it != AssetManager::boards.end();
          ++it)
     {
-        if( strncmp((*it).fileName.c_str(), fileName, (*it).fileName.length() == 0) ) {
+        if (strncmp((*it).fileName.c_str(), fileName, (*it).fileName.length()) == 0)
+        {
             Log(INFO) << "already have that board " << fileName;
             return (*it);
         }
@@ -22,15 +23,18 @@ Asset &AssetManager::addBoard(const char *fileName)
 
     Log(INFO) << "AssetManager added board " << fileName;
 
-    Asset *asset = new Asset();
-    asset->fileName = std::string(fileName);
-    asset->material = imread(fileName, IMREAD_UNCHANGED);
-    AssetManager::boards.push_back(*asset);
+    Asset asset;
+    asset.fileName = std::string(fileName);
+    AssetManager::boards.push_back(asset);
 
-    return *asset;
+    AssetMat mat;
+    mat.image = imread(fileName, IMREAD_UNCHANGED);
+    asset.assetMats.push_back(mat);
+
+    return asset;
 }
 
-Asset &AssetManager::addAsset(const char *fileName)
+Asset AssetManager::addAsset(const char *fileName)
 {
     Log(INFO) << "AssetManager addAsset";
 
@@ -38,20 +42,22 @@ Asset &AssetManager::addAsset(const char *fileName)
          it != AssetManager::assets.end();
          ++it)
     {
-        if( strncmp((*it).fileName.c_str(), fileName, (*it).fileName.length() == 0) ) {
+        if (strncmp((*it).fileName.c_str(), fileName, (*it).fileName.length()) == 0)
+        {
             Log(INFO) << "already have that asset " << fileName;
             return (*it);
         }
     }
 
-    Log(INFO) << "AssetManager added asset " << fileName;
+    Asset asset;
+    asset.fileName = std::string(fileName);
+    AssetManager::assets.push_back(asset);
 
-    Asset *asset = new Asset();
-    asset->fileName = std::string(fileName);
-    asset->material = imread(fileName, IMREAD_UNCHANGED);
-    AssetManager::assets.push_back(*asset);
+    AssetMat mat;
+    mat.image = imread(fileName, IMREAD_UNCHANGED);
+    asset.assetMats.push_back(mat);
 
-    return *asset;
+    return asset;
 }
 
 void AssetManager::setCurrentBoard(Asset &value)
@@ -64,7 +70,8 @@ void AssetManager::setCurrentBoard(Asset &value)
          it != AssetManager::boards.end();
          ++it)
     {
-        if( strncmp((*it).fileName.c_str(), value.fileName.c_str(), value.fileName.length()) == 0 ) {
+        if (strncmp((*it).fileName.c_str(), value.fileName.c_str(), value.fileName.length()) == 0)
+        {
             AssetManager::currentBoard = &(*it);
             Log(INFO) << "AssetManager current board is now " << value.fileName;
             return;
