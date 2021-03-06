@@ -40,7 +40,7 @@ void alignImages(Mat &im1, Mat &im2, Mat &im1Reg, Mat &h)
   std::sort(matches.begin(), matches.end());
 
   // Remove not so good matches
-  const int numGoodMatches = matches.size() * GOOD_MATCH_PERCENT;
+  const int numGoodMatches = (int) (matches.size() * GOOD_MATCH_PERCENT);
   matches.erase(matches.begin()+numGoodMatches, matches.end());
 
   // Draw top matches
@@ -117,7 +117,7 @@ void ImageDetection::detectTemplate(Mat frame, Mat templateImage)
     waitKey();
 #endif
 
-
+#ifdef xxx
     //-- Step 1: Detect the keypoints using SIFT Detector, compute the descriptors
     Ptr<SIFT> detector = SIFT::create();
     std::vector<KeyPoint> keypoints_object, keypoints_scene;
@@ -203,7 +203,7 @@ void ImageDetection::detectTemplate(Mat frame, Mat templateImage)
 
     imshow("Good Matches & Object detection", templateMatch );
     waitKey();
-
+#endif
 }
 
 // https://stackoverflow.com/questions/7838487/executing-cvwarpperspective-for-a-fake-deskewing-on-a-set-of-cvpo
