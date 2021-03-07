@@ -23,13 +23,8 @@ Asset AssetManager::addBoard(const char *fileName)
 
     Log(INFO) << "AssetManager added board " << fileName;
 
-    Asset asset;
-    asset.fileName = std::string(fileName);
+    Asset asset(fileName);
     AssetManager::boards.push_back(asset);
-
-    AssetMat mat;
-    mat.image = imread(fileName, IMREAD_UNCHANGED);
-    asset.assetMats.push_back(mat);
 
     return asset;
 }
@@ -49,13 +44,10 @@ Asset AssetManager::addAsset(const char *fileName)
         }
     }
 
-    Asset asset;
-    asset.fileName = std::string(fileName);
-    AssetManager::assets.push_back(asset);
+    Log(INFO) << "AssetManager added asset " << fileName;
 
-    AssetMat mat;
-    mat.image = imread(fileName, IMREAD_UNCHANGED);
-    asset.assetMats.push_back(mat);
+    Asset asset(fileName);
+    AssetManager::assets.push_back(asset);
 
     return asset;
 }

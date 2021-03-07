@@ -81,12 +81,25 @@ public:
         //Log(INFO) << "Asset";
     }
 
+    Asset(const char *imageFileName) {
+        //Log(INFO) << "Asset (" << imageFileName << ")";
+        AssetMat am;
+        fileName = imageFileName;
+        am.image = imread(fileName, IMREAD_UNCHANGED);
+        assetMats.push_back(am);
+    }
+
+    Asset(Mat frame) {
+        //Log(INFO) << "Asset (frame)";
+        AssetMat am;
+        am.image = frame;
+        assetMats.push_back(am);
+    }
+
     Asset(const Asset &value)
     {
         //Log(INFO) << "Asset cctor";
-
         fileName = value.fileName;
-
         std::list<AssetMat> am = value.assetMats;
         for (std::list<AssetMat>::iterator it = am.begin();
              it != am.end();

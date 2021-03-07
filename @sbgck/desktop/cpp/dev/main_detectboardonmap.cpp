@@ -40,10 +40,11 @@ int main(int argc, char **argv)
     };
 
     Camera camPtr(cfg);
-    Mat frame = camPtr.getFrame();
+    Mat mat = camPtr.getFrame();
+    Asset frame = Asset(mat);
 
-    ImageDetection::detectTemplate(frame, AssetManager::getCurrentBoard()->material);
+    ImageDetection::detectTemplate(frame, (*AssetManager::getCurrentBoard()));
 
-    imwrite(argv[3], frame);
+   // imwrite(argv[3], frame);
     return 0;
 }
