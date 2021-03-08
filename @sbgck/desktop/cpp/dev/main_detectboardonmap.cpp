@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <opencv2/opencv.hpp>
 
 #include "assetmanager.hpp"
@@ -27,17 +28,18 @@ int main(int argc, char **argv)
 
     CameraMode mode = DebugFile;
 
-    char *input = strdup(argv[1]);
-    for( char *p=input; *p; p++) *p = tolower(*p);
-    if(strncmp(input, "http", 4)==0) {
+    std::string urlOrFileName(argv[1]);
+
+    std::string lower(urlOrFileName);
+    std::transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
+    if (lower.rfind("http", 0) == 0)
+    {
         mode = IPCamera;
     }
-    free((void*)input);
 
     CameraConfig cfg = {
         mode,
-        std::string(argv[1])
-    };
+        urlOrFileName};
 
     Camera camPtr(cfg);
     Mat mat = camPtr.getFrame();
