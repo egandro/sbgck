@@ -45,9 +45,9 @@ int main(int argc, char **argv)
 
     Asset detectedBoard = ImageDetection::detectBoard(mat, (*AssetManager::getCurrentBoard()));
 
-    imshow("Good Matches & Object detection", detectedBoard.getDefault().image);
-    waitKey();
+    //imshow("Good Matches & Object detection", detectedBoard.getDefault().image);
+    //waitKey();
 
-   // imwrite(argv[3], frame);
+    imwrite(argv[3], detectedBoard.getDefault().image);
     return 0;
 }
