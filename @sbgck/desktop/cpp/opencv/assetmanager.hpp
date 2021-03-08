@@ -6,24 +6,26 @@
 
 using namespace cv;
 
-enum DetectorMode
+typedef enum e_DetectorMode
 {
     None,
     Feature2D,
     SIFT
-};
+} DetectorMode;
 
-enum ScaleMode
+typedef enum e_ScaleMode
 {
     NotScaled,
     Normalized // max 640x480 - honoring aspect
-};
+} ScaleMode;
 
-enum ColorMode
+typedef enum e_ColorMode
 {
     Unchanged,
     GreyScale, // COLOR_BGR2GRAY
-};
+    Canny // Edge detection
+
+} ColorMode;
 
 class AssetMat
 {
@@ -114,6 +116,29 @@ public:
     {
         assetMats.clear();
         //Log(INFO) << "~Asset";
+    }
+
+    AssetMat getNormalized() {
+        for (std::list<AssetMat>::iterator it = assetMats.begin();
+             it != assetMats.end();
+             ++it)
+        {
+            if( (*it).scale == Normalized) {
+                return (*it);
+            }
+        }
+
+        std::list<AssetMat>::iterator it = assetMats.begin();
+        std::advance(it, 0);
+
+        AssetMat am(*it);
+        am.scale = Normalized;
+
+        double scale = (double)640 / (double)(*it).image.size().width;
+        resize((*it).image, am.image, Size(), scale, scale);
+
+        assetMats.push_back(am);
+        return am;
     }
 };
 

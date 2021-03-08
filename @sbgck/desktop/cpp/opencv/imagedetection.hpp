@@ -12,7 +12,7 @@ using namespace cv;
 class ImageDetection
 {
 public:
-    static Asset detectBoard(Mat frame, Asset board);
+    static Asset detectBoard(Mat camFrame, Asset board);
 
     static Rect detectTemplate(Asset frame, Asset asset);
 };

@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     Mat mat = camPtr.getFrame();
     Asset frame = Asset(mat);
 
-    ImageDetection::detectTemplate(frame, (*AssetManager::getCurrentBoard()));
+    ImageDetection::detectBoard(mat, (*AssetManager::getCurrentBoard()));
 
    // imwrite(argv[3], frame);
     return 0;
