@@ -11,7 +11,22 @@ using namespace cv;
 
 class ImageDetection
 {
+private:
+    static void calculateKeypoints(AssetMat & am);
+
+    static void calculateKeypointsFeature2D(AssetMat & am);
+
+    static void calculateKeypointsSIFT(AssetMat & am);
+
+    static void calculateMatches(std::vector<DMatch> &matches, const AssetMat &frame, const AssetMat &tpl);
+
+    static void calculateMatchesFeature2D(std::vector<DMatch> &matches, const AssetMat &frame, const AssetMat &tpl);
+
+    static void calculateMatchesSIFT(std::vector<DMatch> &matches, const AssetMat &frame, const AssetMat &tpl);
+
 public:
+    static DetectorMode detectorMode;
+
     static Asset detectBoard(Mat camFrame, Asset board);
 
     static Rect detectTemplate(Asset frame, Asset asset);

@@ -9,8 +9,8 @@ using namespace cv;
 typedef enum e_DetectorMode
 {
     None,
-    Feature2D,
-    SIFT
+    DM_Feature2D,
+    DM_SIFT
 } DetectorMode;
 
 typedef enum e_ScaleMode
@@ -118,6 +118,13 @@ public:
         //Log(INFO) << "~Asset";
     }
 
+    AssetMat getDefault() {
+        std::list<AssetMat>::iterator it = assetMats.begin();
+        std::advance(it, 0);
+
+        return *it;
+    }
+
     AssetMat getNormalized() {
         for (std::list<AssetMat>::iterator it = assetMats.begin();
              it != assetMats.end();
@@ -128,14 +135,12 @@ public:
             }
         }
 
-        std::list<AssetMat>::iterator it = assetMats.begin();
-        std::advance(it, 0);
-
-        AssetMat am(*it);
+        // copy
+        AssetMat am(getDefault());
         am.scale = Normalized;
 
-        double scale = (double)640 / (double)(*it).image.size().width;
-        resize((*it).image, am.image, Size(), scale, scale);
+        double scale = (double)640 / (double)(am.image.size().width);
+        resize((getDefault()).image, am.image, Size(), scale, scale);
 
         assetMats.push_back(am);
         return am;

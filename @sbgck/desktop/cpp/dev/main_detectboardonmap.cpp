@@ -43,7 +43,10 @@ int main(int argc, char **argv)
     Mat mat = camPtr.getFrame();
     Asset frame = Asset(mat);
 
-    ImageDetection::detectBoard(mat, (*AssetManager::getCurrentBoard()));
+    Asset detectedBoard = ImageDetection::detectBoard(mat, (*AssetManager::getCurrentBoard()));
+
+    imshow("Good Matches & Object detection", detectedBoard.getDefault().image);
+    waitKey();
 
    // imwrite(argv[3], frame);
     return 0;
