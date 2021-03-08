@@ -39,7 +39,8 @@ int main(int argc, char **argv)
 
     CameraConfig cfg = {
         mode,
-        urlOrFileName};
+        urlOrFileName
+    };
 
     Camera camPtr(cfg);
     Mat mat = camPtr.getFrame();
