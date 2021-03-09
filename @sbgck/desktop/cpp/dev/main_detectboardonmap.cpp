@@ -51,6 +51,12 @@ int main(int argc, char **argv)
     //imshow("Good Matches & Object detection", detectedBoard.getDefault().image);
     //waitKey();
 
-    imwrite(argv[3], detectedBoard.getDefault().image);
+    Mat image = detectedBoard.getDefault().image;
+    if(image.empty()) {
+        Log(WARN) << "got empty board back";
+    } else {
+        imwrite(argv[3], image);
+    }
+
     return 0;
 }

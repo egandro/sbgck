@@ -1,6 +1,8 @@
 #include "imagedetection.hpp"
 #include "log.hpp"
 
+#define MIN_GOOD_POINTS 5
+
 DetectorMode ImageDetection::detectorMode = DM_Feature2D;
 //DetectorMode ImageDetection::detectorMode = DM_SIFT;
 
@@ -103,6 +105,9 @@ Asset ImageDetection::detectBoard(Mat camFrame, Asset board)
     imshow("Good Matches & Object detection", imMatches);
     waitKey();
 #endif
+    Log(INFO) << "frame kps: " << downscaleFrame.keypoints.size();
+    Log(INFO) << "board kps: " << downscaleBoard.keypoints.size();
+    Log(INFO) << "matches: " << matches.size();
 
     // Extract location of good matches
     std::vector<Point2f> points1, points2;
@@ -132,16 +137,18 @@ Asset ImageDetection::detectBoard(Mat camFrame, Asset board)
 #endif
     }
 
-    // Find homography
-    Mat h = findHomography(points1, points2, RANSAC);
-
     Mat imgResult;
 
-    // Use homography to warp image
-    warpPerspective(camFrame, imgResult, h, board.getDefault().image.size());
+    if( matches.size() >= MIN_GOOD_POINTS) {
+        // Find homography
+        Mat h = findHomography(points1, points2, RANSAC);
 
-    // Print estimated homography
-    // Log(INFO) <<  "Estimated homography : \n" << h;
+        // Use homography to warp image
+        warpPerspective(camFrame, imgResult, h, board.getDefault().image.size());
+
+        // Print estimated homography
+        // Log(INFO) <<  "Estimated homography : \n" << h;
+    }
 
     Asset result(imgResult);
     return result;
