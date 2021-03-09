@@ -6,6 +6,8 @@
 
 using namespace cv;
 
+#define DEFAULT_SCALE_WIDTH 640
+
 typedef enum e_DetectorMode
 {
     None,
@@ -16,7 +18,7 @@ typedef enum e_DetectorMode
 typedef enum e_ScaleMode
 {
     NotScaled,
-    Normalized // max 640x480 - honoring aspect
+    ScaledProportional // max 640x480 - honoring aspect
 } ScaleMode;
 
 typedef enum e_ColorMode
@@ -34,8 +36,9 @@ public:
     ScaleMode scale;
     ColorMode color;
     Mat image;
-    std::vector<KeyPoint> keypoints;
     Mat descriptors;
+    double scaleFactor;
+    std::vector<KeyPoint> keypoints;
 
     AssetMat()
     {
@@ -43,6 +46,7 @@ public:
         detector = None;
         scale = NotScaled;
         color = Unchanged;
+        scaleFactor = 1.0;
     }
 
     AssetMat(const AssetMat &value)
@@ -53,6 +57,8 @@ public:
         detector = value.detector;
         color = value.color;
         image = Mat(value.image);
+        descriptors = Mat(value.descriptors);
+        scaleFactor = value.scaleFactor;
 
         std::vector<KeyPoint> kps = value.keypoints;
         for (std::vector<KeyPoint>::iterator it = kps.begin();
@@ -125,22 +131,24 @@ public:
         return *it;
     }
 
-    AssetMat getNormalized() {
+    AssetMat getScaled(const int width=DEFAULT_SCALE_WIDTH) {
         for (std::list<AssetMat>::iterator it = assetMats.begin();
              it != assetMats.end();
              ++it)
         {
-            if( (*it).scale == Normalized) {
+            if( (*it).scale == ScaledProportional) {
                 return (*it);
             }
         }
 
         // copy
         AssetMat am(getDefault());
-        am.scale = Normalized;
 
-        double scale = (double)640 / (double)(am.image.size().width);
-        resize((getDefault()).image, am.image, Size(), scale, scale);
+        am.scale = ScaledProportional;
+        am.scaleFactor = (double)width / (double)(am.image.size().width);
+
+        // resize
+        resize(am.image, am.image, Size(), am.scaleFactor, am.scaleFactor);
 
         assetMats.push_back(am);
         return am;

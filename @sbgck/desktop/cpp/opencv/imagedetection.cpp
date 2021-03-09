@@ -46,7 +46,7 @@ void ImageDetection::calculateMatches(std::vector<DMatch> &matches, const AssetM
 void ImageDetection::calculateMatchesFeature2D(std::vector<DMatch> &matches, const AssetMat &frame, const AssetMat &tpl)
 {
     // https://learnopencv.com/image-alignment-feature-based-using-opencv-c-python/
-    static const float GOOD_MATCH_PERCENT = 0.25f;
+    static const float GOOD_MATCH_PERCENT = 0.15f;
     static Ptr<DescriptorMatcher> matcher = DescriptorMatcher::create("BruteForce-Hamming");
 
     matcher->match(frame.descriptors, tpl.descriptors, matches, Mat());
@@ -76,28 +76,30 @@ void ImageDetection::calculateMatchesSIFT(std::vector<DMatch> &matches, const As
 
 Asset ImageDetection::detectBoard(Mat camFrame, Asset board)
 {
+    // https://learnopencv.com/feature-based-image-alignment-using-opencv-c-python/
+
     Log(INFO) << "ImageDetection detectBoard";
 
     Asset frame(camFrame);
 
-    // TODO: fix this!
-    // normalized detection works, but I don't know how to scale the homography up
-    // AssetMat normalizedFrame = frame.getNormalized();
-    // AssetMat normalizedBoard = board.getNormalized();
+    AssetMat downscaleFrame = frame.getScaled();
 
-    AssetMat normalizedFrame = frame.getDefault();
-    AssetMat normalizedBoard = board.getDefault();
+    // do a proportioned scaled version of the board (relative to the frame)
+    double scaleFactor = (double)board.getDefault().image.size().width / (double)frame.getDefault().image.size().width;
+    double size = (double) DEFAULT_SCALE_WIDTH * scaleFactor;
 
-    ImageDetection::calculateKeypoints(normalizedFrame);
-    ImageDetection::calculateKeypoints(normalizedBoard);
+    AssetMat downscaleBoard = board.getScaled(size);
+
+    ImageDetection::calculateKeypoints(downscaleFrame);
+    ImageDetection::calculateKeypoints(downscaleBoard);
 
     std::vector<DMatch> matches;
-    ImageDetection::calculateMatches(matches, normalizedFrame, normalizedBoard);
+    ImageDetection::calculateMatches(matches, downscaleFrame, downscaleBoard);
 
 #ifdef xxx
     // Draw top matches
     Mat imMatches;
-    drawMatches(normalizedFrame.image, normalizedFrame.keypoints, normalizedBoard.image, normalizedBoard.keypoints, matches, imMatches);
+    drawMatches(downscaleFrame.image, downscaleFrame.keypoints, downscaleBoard.image, downscaleBoard.keypoints, matches, imMatches);
     imshow("Good Matches & Object detection", imMatches);
     waitKey();
 #endif
@@ -105,10 +107,29 @@ Asset ImageDetection::detectBoard(Mat camFrame, Asset board)
     // Extract location of good matches
     std::vector<Point2f> points1, points2;
 
+    double scaleUp1 = (double)1.0 / (double)downscaleFrame.scaleFactor;
+    double scaleUp2 = (double)1.0 / (double)downscaleBoard.scaleFactor;
+
     for (size_t i = 0; i < matches.size(); i++)
     {
-        points1.push_back(normalizedFrame.keypoints[matches[i].queryIdx].pt);
-        points2.push_back(normalizedBoard.keypoints[matches[i].trainIdx].pt);
+        // upscale the points relative to the original frame and board
+        Point2f p;
+
+        p = downscaleFrame.keypoints[matches[i].queryIdx].pt;
+        p.x *= scaleUp1;
+        p.y *= scaleUp1;
+        points1.push_back(p);
+
+        p = downscaleBoard.keypoints[matches[i].trainIdx].pt;
+        p.x *= scaleUp2;
+        p.y *= scaleUp2;
+        points2.push_back(p);
+
+#ifdef xxx
+        // this was the original idea
+        points1.push_back(downscaleFrame.keypoints[matches[i].queryIdx].pt);
+        points2.push_back(downscaleBoard.keypoints[matches[i].trainIdx].pt);
+#endif
     }
 
     // Find homography
@@ -118,6 +139,9 @@ Asset ImageDetection::detectBoard(Mat camFrame, Asset board)
 
     // Use homography to warp image
     warpPerspective(camFrame, imgResult, h, board.getDefault().image.size());
+
+    // Print estimated homography
+    // Log(INFO) <<  "Estimated homography : \n" << h;
 
     Asset result(imgResult);
     return result;
