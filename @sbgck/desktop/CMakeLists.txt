@@ -9,6 +9,11 @@ project(desktop)
 # opencv
 find_package(OpenCV REQUIRED)
 
+IF(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    # idea from here - https://stackoverflow.com/questions/15100351/changing-cmake-cxx-flags-in-project
+    SET ( CMAKE_CXX_FLAGS "-Wno-psabi" )
+ENDIF()
+
 # Build a shared library named after the project from the files in `src/`
 file(GLOB SOURCE_FILES "cpp/opencv/*.cpp" "cpp/opencv/*.hpp" "cpp/node/*.cpp" "cpp/node/*.hpp")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC})
