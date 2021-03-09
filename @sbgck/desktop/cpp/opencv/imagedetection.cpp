@@ -3,8 +3,8 @@
 
 #define MIN_GOOD_POINTS 5
 
-DetectorMode ImageDetection::detectorMode = DM_Feature2D;
-//DetectorMode ImageDetection::detectorMode = DM_SIFT;
+//DetectorMode ImageDetection::detectorMode = DM_Feature2D;
+DetectorMode ImageDetection::detectorMode = DM_SIFT;
 
 void ImageDetection::calculateKeypoints(AssetMat & am)
 {
@@ -63,7 +63,7 @@ void ImageDetection::calculateMatchesFeature2D(std::vector<DMatch> &matches, con
 
 void ImageDetection::calculateMatchesSIFT(std::vector<DMatch> &matches, const AssetMat &frame, const AssetMat &tpl)
 {
-    static const float GOOD_MATCH_PERCENT = 0.30f;
+    static const float GOOD_MATCH_PERCENT = 0.25f;
     static Ptr<DescriptorMatcher> matcher = DescriptorMatcher::create(DescriptorMatcher::FLANNBASED);
 
     matcher->match(frame.descriptors, tpl.descriptors, matches, Mat());
@@ -98,7 +98,7 @@ Asset ImageDetection::detectBoard(Mat camFrame, Asset board)
     std::vector<DMatch> matches;
     ImageDetection::calculateMatches(matches, downscaleFrame, downscaleBoard);
 
-#ifdef xxx
+#ifndef xxx
     // Draw top matches
     Mat imMatches;
     drawMatches(downscaleFrame.image, downscaleFrame.keypoints, downscaleBoard.image, downscaleBoard.keypoints, matches, imMatches);
@@ -154,9 +154,40 @@ Asset ImageDetection::detectBoard(Mat camFrame, Asset board)
     return result;
 }
 
-Rect ImageDetection::detectTemplate(Asset frame, Asset asset)
+Rect ImageDetection::detectTemplate(Asset assetFrame, Asset assetTpl)
 {
     Log(INFO) << "ImageDetection detectTemplate";
+
+    AssetMat frame = assetFrame.getDefault();
+    AssetMat tpl = assetTpl.getDefault();
+
+    ImageDetection::calculateKeypoints(frame);
+    ImageDetection::calculateKeypoints(tpl);
+
+    std::vector<DMatch> matches;
+    ImageDetection::calculateMatches(matches, frame, tpl);
+
+#ifndef xxx
+    // Draw top matches
+    Mat imMatches;
+    drawMatches(frame.image, frame.keypoints, tpl.image, tpl.keypoints, matches, imMatches);
+    imshow("Good Matches & Object detection", imMatches);
+    waitKey();
+#endif
+
+    Log(INFO) << "frame kps: " << frame.keypoints.size();
+    Log(INFO) << "board kps: " << tpl.keypoints.size();
+    Log(INFO) << "matches: " << matches.size();
+
+    // Extract location of good matches
+    std::vector<Point2f> points1, points2;
+
+    for (size_t i = 0; i < matches.size(); i++)
+    {
+        points1.push_back(frame.keypoints[matches[i].queryIdx].pt);
+        points2.push_back(tpl.keypoints[matches[i].trainIdx].pt);
+    }
+
 
     Rect result;
     return result;

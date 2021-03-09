@@ -13,7 +13,7 @@ structlog LOGCFG = {};
 
 int main(int argc, char **argv)
 {
-    LOGCFG.prefix = (char *)"main_camera";
+    LOGCFG.prefix = (char *)"main_detectboardonmap";
     LOGCFG.headers = true;
     LOGCFG.level = DEBUG;
 

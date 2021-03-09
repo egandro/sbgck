@@ -29,7 +29,7 @@ public:
 
     static Asset detectBoard(Mat camFrame, Asset board);
 
-    static Rect detectTemplate(Asset frame, Asset asset);
+    static Rect detectTemplate(Asset assetFrame, Asset assetTpl);
 };
 
 #endif
