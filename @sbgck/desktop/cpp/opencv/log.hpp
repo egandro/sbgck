@@ -19,13 +19,14 @@ enum typelog
     DEBUG,
     INFO,
     WARN,
-    ERROR
+    ERROR,
+    __DISABLED
 };
 
 struct structlog
 {
     bool headers = false;
-    typelog level = WARN;
+    typelog level = __DISABLED;
     char *prefix = NULL;
 };
 
