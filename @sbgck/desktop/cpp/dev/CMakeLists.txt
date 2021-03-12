@@ -17,8 +17,8 @@ ENDIF()
 include_directories( ${OpenCV_INCLUDE_DIRS} "../opencv/" )
 file(GLOB SOURCE_FILES "../opencv/*.cpp" "../opencv/*.hpp")
 
-# add_executable( main_json ${SOURCE_FILES} main_json.cpp )
-# target_link_libraries( main_json ${OpenCV_LIBS} )
+# add_executable( main_json_test ${SOURCE_FILES} main_json_test.cpp )
+# target_link_libraries( main_json_test ${OpenCV_LIBS} )
 
 # add_executable( main_assetmanager ${SOURCE_FILES} main_assetmanager.cpp )
 # target_link_libraries( main_assetmanager ${OpenCV_LIBS} )
@@ -29,5 +29,5 @@ file(GLOB SOURCE_FILES "../opencv/*.cpp" "../opencv/*.hpp")
 # add_executable( main_detectboardonmap ${SOURCE_FILES} main_detectboardonmap.cpp )
 # target_link_libraries( main_detectboardonmap ${OpenCV_LIBS} )
 
-add_executable( main_detecttokens ${SOURCE_FILES} main_detecttokens.cpp )
-target_link_libraries( main_detecttokens ${OpenCV_LIBS} )
+#add_executable( main_detecttokens ${SOURCE_FILES} main_detecttokens.cpp )
+#target_link_libraries( main_detecttokens ${OpenCV_LIBS} )

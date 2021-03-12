@@ -174,6 +174,24 @@ Rect ImageDetection::detectTemplate(Asset assetFrame, Asset assetTpl)
     AssetMat frame = assetFrame.getDefault();
     AssetMat tpl = assetTpl.getDefault();
 
+    //cvtColor(frame.image, frame.image, COLOR_BGR2GRAY);
+    //cvtColor(tpl.image, tpl.image, COLOR_BGR2GRAY);
+    // https://answers.opencv.org/question/216383/how-could-do-sharpness-images/
+#ifdef xxx
+    Mat sharpening_kernel = (Mat_<double>(3, 3) << -1, -1, -1,
+        -1, 9, -1,
+        -1, -1, -1);
+    filter2D(frame.image, frame.image, -1, sharpening_kernel);
+    filter2D(tpl.image, tpl.image, -1, sharpening_kernel);
+#endif
+
+    // https://docs.opencv.org/2.4/doc/tutorials/imgproc/gausian_median_blur_bilateral_filter/gausian_median_blur_bilateral_filter.html
+
+
+    GaussianBlur(frame.image, frame.image, Size( 5,5  ), 0, 0 );
+    GaussianBlur(tpl.image, tpl.image, Size( 3,3 ), 0, 0 );
+    // medianBlur ( tpl.image, tpl.image, 3 );
+
     ImageDetection::calculateKeypoints(frame);
     ImageDetection::calculateKeypoints(tpl);
 
@@ -185,13 +203,17 @@ Rect ImageDetection::detectTemplate(Asset assetFrame, Asset assetTpl)
     Mat imMatches;
     std::vector<DMatch> m;
     std::vector<KeyPoint> k;
-    drawMatches(frame.image, k, tpl.image, k, m, imMatches,  Scalar::all(-1),
-                 Scalar::all(-1), std::vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+    //drawMatches(frame.image, k, tpl.image, k, m, imMatches,  Scalar::all(-1),
+    //            Scalar::all(-1), std::vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+    drawMatches(frame.image, k, tpl.image, k, m, imMatches);
+
     imwrite("/tmp/debug1.png", imMatches);
     imshow("Empty", imMatches);
     imMatches = Mat();
-    drawMatches(frame.image, frame.keypoints, tpl.image, tpl.keypoints, matches, imMatches, Scalar::all(-1),
-                 Scalar::all(-1), std::vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+    //drawMatches(frame.image, frame.keypoints, tpl.image, tpl.keypoints, matches, imMatches, Scalar::all(-1),
+    //             Scalar::all(-1), std::vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+    drawMatches(frame.image, frame.keypoints, tpl.image, tpl.keypoints, matches, imMatches);
+
     imwrite("/tmp/debug2.png", imMatches);
     imshow("Good Matches & Object detection", imMatches);
 

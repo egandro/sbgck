@@ -19,6 +19,7 @@ int main(int argc, char **argv)
 
     const std::string boardFile = "/home/pi/projects/pics/board.png";
     const std::string urlOrFileName("/home/pi/projects/pics/frame_arctic_a_in_control_post.png");
+    //const std::string urlOrFileName("/home/pi/projects/pics/frame_dummy.png");
     const std::string assetTokenAFile = "/home/pi/projects/pics/token_a.png";
     const std::string assetTokenBFile = "/home/pi/projects/pics/token_b.png";
     const std::string assetTokenCFile = "/home/pi/projects/pics/token_c.png";
@@ -51,6 +52,7 @@ int main(int argc, char **argv)
     Mat image = detectedBoard.getDefault().image;
 
     if(!image.empty()) {
+        imwrite("/tmp/board.png", image);
         Rect r = ImageDetection::detectTemplate(detectedBoard, tokenA);
         Log(INFO) << "tokenA: " << r;
     }
