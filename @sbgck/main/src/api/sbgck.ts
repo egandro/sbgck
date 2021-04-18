@@ -6,7 +6,7 @@ import { GameConfig } from './dto/config/gameconfig';
 import { Material } from './dto/material';
 import { Event } from './dto/event';
 
-const pjson = require('../../package.json');
+const { version } = require('../../package.json');
 
 export class SBGCK {
 	private fileManager: FileManager = new FileManager();
@@ -17,7 +17,7 @@ export class SBGCK {
 	static assetFolder: string;
 
 	static getVersion(): string {
-		return pjson.version;
+		return version;
 	}
 
 	constructor(gameConfigFilename: string) {

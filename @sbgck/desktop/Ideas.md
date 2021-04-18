@@ -33,3 +33,22 @@ https://www.stereolabs.com/docs/docker/building-arm-container-on-x86/
 // Cmake.js for multiple archs
 
 https://github.com/cmake-js/cmake-js/issues/200
+
+
+Diff two images - openCV:
+
+https://stackoverflow.com/questions/27035672/cv-extract-differences-between-two-images
+-> Library from this Link (remove Backgrounds): https://github.com/andrewssobral/bgslibrary
+
+Color Calibration:
+
+https://stackoverflow.com/questions/18897730/how-i-make-color-calibration-in-opencv-using-a-colorchecker
+https://docs.opencv.org/master/de/df4/group__color__correction.html
+https://www.pyimagesearch.com/2021/02/15/automatic-color-correction-with-opencv-and-python/
+https://www.pantone.com/pantone-color-match-card
+https://arxiv.org/pdf/1810.08639.pdf
+https://en.wikipedia.org/wiki/ColorChecker
+https://en.wikipedia.org/wiki/File:Color_Checker.pdf
+
+
+
