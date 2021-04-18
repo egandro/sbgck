@@ -26,8 +26,8 @@ ExternalProject_Add(sbgck_opencv
 include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
 link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 
-# Build a shared library named after the project from the files in `src/`
-file(GLOB SOURCE_FILES "cpp/opencv/*.cpp" "cpp/opencv/*.hpp" "cpp/node/*.cpp" "cpp/node/*.hpp")
+# Build a shared library named after the project from the files in `cpp/`
+file(GLOB SOURCE_FILES "cpp/*.cpp" "cpp/*.hpp")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC})
 
 # needed for the logger
@@ -38,7 +38,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 
 # Essential include files to build a node addon,
 # You should add this line in every CMake.js based project
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_JS_INC} ${OpenCV_INCLUDE_DIRS} "cpp/opencv/" "cpp/node/")
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_JS_INC} ${OpenCV_INCLUDE_DIRS} "cpp/")
 
 # Essential library files to link to a node addon
 # You should add this line in every CMake.js based project
