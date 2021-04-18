@@ -1,7 +1,7 @@
 #include <node.h>
 
+#include <log.hpp>
 #include "hello.hpp"
-#include "log.hpp"
 
 namespace sbgck
 {
