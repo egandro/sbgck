@@ -1,6 +1,6 @@
 #include <node.h>
 
-#include "log.hpp"
+#include <log.hpp>
 #include "hello.hpp"
 
 structlog LOGCFG = {};
