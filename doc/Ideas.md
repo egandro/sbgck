@@ -65,3 +65,17 @@
 
 - We might go with PhoneGap or similar (might be a pain combining that with OpenCV)
 
+## SVGs
+
+https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-transparent-background
+
+## Color Calibration
+
+- https://stackoverflow.com/questions/18897730/how-i-make-color-calibration-in-opencv-using-a-colorchecker
+- https://www.pyimagesearch.com/2021/02/15/automatic-color-correction-with-opencv-and-python/
+
+## Diff images
+
+- https://stackoverflow.com/questions/27035672/cv-extract-differences-between-two-images
+- https://docs.opencv.org/2.4/modules/video/doc/motion_analysis_and_object_tracking.html#backgroundsubtractor
+- Library: https://github.com/andrewssobral/bgslibrary
