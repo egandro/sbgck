@@ -73,6 +73,7 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 
 - https://stackoverflow.com/questions/18897730/how-i-make-color-calibration-in-opencv-using-a-colorchecker
 - https://www.pyimagesearch.com/2021/02/15/automatic-color-correction-with-opencv-and-python/
+- https://blog.francium.tech/using-machine-learning-for-color-calibration-with-a-color-checker-d9f0895eafdb
 
 ## Diff images
 
