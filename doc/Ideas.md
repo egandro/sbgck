@@ -72,6 +72,8 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 ## Color Calibration
 
 - https://www.pyimagesearch.com/2021/02/15/automatic-color-correction-with-opencv-and-python/
+- Implementation in C++ with Histogram: https://www.morethantechnical.com/2010/01/28/recoloring-via-histogram-matching-with-opencv-w-code/
+^^^ simple
 
 
 - https://stackoverflow.com/questions/18897730/how-i-make-color-calibration-in-opencv-using-a-colorchecker
