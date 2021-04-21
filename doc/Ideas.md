@@ -90,3 +90,9 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 - https://stackoverflow.com/questions/27035672/cv-extract-differences-between-two-images
 - https://docs.opencv.org/2.4/modules/video/doc/motion_analysis_and_object_tracking.html#backgroundsubtractor
 - Library: https://github.com/andrewssobral/bgslibrary
+
+
+## Ideas for Dice Detection
+
+- https://www.pyimagesearch.com/2016/10/03/bubble-sheet-multiple-choice-scanner-and-test-grader-using-omr-python-and-opencv/
+
