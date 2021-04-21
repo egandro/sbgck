@@ -71,9 +71,17 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 
 ## Color Calibration
 
-- https://stackoverflow.com/questions/18897730/how-i-make-color-calibration-in-opencv-using-a-colorchecker
 - https://www.pyimagesearch.com/2021/02/15/automatic-color-correction-with-opencv-and-python/
+
+
+- https://stackoverflow.com/questions/18897730/how-i-make-color-calibration-in-opencv-using-a-colorchecker
 - https://blog.francium.tech/using-machine-learning-for-color-calibration-with-a-color-checker-d9f0895eafdb
+- https://plantcv.readthedocs.io/en/latest/transform_color_correction_tutorial/
+- https://chowdera.com/2020/12/20201211100511430e.html
+- https://github.com/riskiest/color_calibration/tree/v4/doc/pdf/English/Algorithm
+
+- https://github.com/adrianzgaljic/ColorCalibration
+
 
 ## Diff images
 
