@@ -96,3 +96,8 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 
 - https://www.pyimagesearch.com/2016/10/03/bubble-sheet-multiple-choice-scanner-and-test-grader-using-omr-python-and-opencv/
 
+- https://www.davidepesce.com/2019/09/06/dice-reader-part-1/
+- https://gideonvos.wordpress.com/2018/09/17/dice-detection-using-opencv/
+- https://github.com/Kishaan/Dice-Detection
+
+- https://github.com/andli/dicecounter <<<
