@@ -79,3 +79,20 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 - https://stackoverflow.com/questions/27035672/cv-extract-differences-between-two-images
 - https://docs.opencv.org/2.4/modules/video/doc/motion_analysis_and_object_tracking.html#backgroundsubtractor
 - Library: https://github.com/andrewssobral/bgslibrary
+
+# Online t2s
+
+curl 'https://freetts.com/Home/PlayAudio?Language=en-US&Voice=Matthew_Male&TextMessage=Please%20make%20sure%20the%20camera%20is%20working%2C%20please%20check%20the%20zoomlevel%20and%20make%20sure%20it%20can%20see%20the%20playfield.&id=Matthew&type=1' \
+  -H 'authority: freetts.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'accept: */*' \
+  -H 'dnt: 1' \
+  -H 'x-requested-with: XMLHttpRequest' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://freetts.com/' \
+  -H 'accept-language: de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7' \
+  --compressed
