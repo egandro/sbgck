@@ -71,8 +71,19 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 
 ## Color Calibration
 
-- https://stackoverflow.com/questions/18897730/how-i-make-color-calibration-in-opencv-using-a-colorchecker
 - https://www.pyimagesearch.com/2021/02/15/automatic-color-correction-with-opencv-and-python/
+- Implementation in C++ with Histogram: https://www.morethantechnical.com/2010/01/28/recoloring-via-histogram-matching-with-opencv-w-code/
+^^^ simple
+
+
+- https://stackoverflow.com/questions/18897730/how-i-make-color-calibration-in-opencv-using-a-colorchecker
+- https://blog.francium.tech/using-machine-learning-for-color-calibration-with-a-color-checker-d9f0895eafdb
+- https://plantcv.readthedocs.io/en/latest/transform_color_correction_tutorial/
+- https://chowdera.com/2020/12/20201211100511430e.html
+- https://github.com/riskiest/color_calibration/tree/v4/doc/pdf/English/Algorithm
+
+- https://github.com/adrianzgaljic/ColorCalibration
+
 
 ## Diff images
 
@@ -96,3 +107,13 @@ curl 'https://freetts.com/Home/PlayAudio?Language=en-US&Voice=Matthew_Male&TextM
   -H 'referer: https://freetts.com/' \
   -H 'accept-language: de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7' \
   --compressed
+
+## Ideas for Dice Detection
+
+- https://www.pyimagesearch.com/2016/10/03/bubble-sheet-multiple-choice-scanner-and-test-grader-using-omr-python-and-opencv/
+
+- https://www.davidepesce.com/2019/09/06/dice-reader-part-1/
+- https://gideonvos.wordpress.com/2018/09/17/dice-detection-using-opencv/
+- https://github.com/Kishaan/Dice-Detection
+
+- https://github.com/andli/dicecounter <<<
