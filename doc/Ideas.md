@@ -93,20 +93,27 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 
 # Online t2s
 
-curl 'https://freetts.com/Home/PlayAudio?Language=en-US&Voice=Matthew_Male&TextMessage=Please%20make%20sure%20the%20camera%20is%20working%2C%20please%20check%20the%20zoomlevel%20and%20make%20sure%20it%20can%20see%20the%20playfield.&id=Matthew&type=1' \
+$ sudo apt-get install jq
+
+MESSAGE="Das ist eine Sprachausgabe."
+VOICE="Hans_Male"
+VOICE_ID="Hans"
+LANGUAGE="de-DE"
+
+MESSAGE="This is my text message"
+VOICE="Matthew_Male"
+VOICE_ID="Matthew"
+LANGUAGE="en-US"
+
+MESSAGE=$(echo -n ${MESSAGE} |jq -sRr '@uri')
+JSON=$(curl -s \
+  'https://freetts.com/Home/PlayAudio?Language='${LANGUAGE}'&Voice='${VOICE}'&TextMessage='${MESSAGE}'&id='${VOICE_ID}'&type=1'\
   -H 'authority: freetts.com' \
-  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
-  -H 'accept: */*' \
-  -H 'dnt: 1' \
   -H 'x-requested-with: XMLHttpRequest' \
-  -H 'sec-ch-ua-mobile: ?0' \
-  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
-  -H 'sec-fetch-site: same-origin' \
-  -H 'sec-fetch-mode: cors' \
-  -H 'sec-fetch-dest: empty' \
   -H 'referer: https://freetts.com/' \
-  -H 'accept-language: de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7' \
-  --compressed
+  --compressed)
+wget -c -t0 https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
+
 
 ## Ideas for Dice Detection
 
