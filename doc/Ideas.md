@@ -122,3 +122,12 @@ curl 'https://freetts.com/Home/PlayAudio?Language=en-US&Voice=Matthew_Male&TextM
 ## Virtual Filesystem
 
 - https://github.com/yevgeniy-logachev/vfspp
+
+
+# portable sound library
+
+- https://sol.gfxile.net/soloud/downloads.html
+- https://sol.gfxile.net/soloud/soloud_20200207.pdf
+- https://github.com/bkaradzic/genie
+- https://github.com/jarikomppa/soloud
+
