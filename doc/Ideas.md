@@ -117,3 +117,8 @@ curl 'https://freetts.com/Home/PlayAudio?Language=en-US&Voice=Matthew_Male&TextM
 - https://github.com/Kishaan/Dice-Detection
 
 - https://github.com/andli/dicecounter <<<
+
+
+## Virtual Filesystem
+
+- https://github.com/yevgeniy-logachev/vfspp
