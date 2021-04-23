@@ -95,6 +95,8 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 
 $ sudo apt-get install jq
 
+FILENAME=voice.mp3
+
 MESSAGE="Das ist eine Sprachausgabe."
 VOICE="Hans_Male"
 VOICE_ID="Hans"
@@ -112,7 +114,8 @@ JSON=$(curl -s \
   -H 'x-requested-with: XMLHttpRequest' \
   -H 'referer: https://freetts.com/' \
   --compressed)
-wget -c -t0 https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
+
+curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 
 
 ## Ideas for Dice Detection
