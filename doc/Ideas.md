@@ -132,7 +132,8 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 ## Virtual Filesystem
 
 - https://github.com/yevgeniy-logachev/vfspp
-
+- https://github.com/anthony-y/tiny-vfs
+- http://www.icculus.org/physfs/ / http://www.icculus.org/physfs/downloads/?C=M;O=D
 
 # portable sound library
 
@@ -141,3 +142,7 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 - https://github.com/bkaradzic/genie
 - https://github.com/jarikomppa/soloud
 
+
+# OpenCV Finger counting
+
+- https://www.youtube.com/watch?v=p5Z_GGRCI5s
