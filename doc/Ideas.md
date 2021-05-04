@@ -145,6 +145,11 @@ Single File: https://github.com/mattiasgustavsson/libs assetsys
 - https://github.com/bkaradzic/genie
 - https://github.com/jarikomppa/soloud
 
+# Music and SFX
+
+- https://opengameart.org/art-search-advanced?keys=&field_art_type_tid%5B%5D=13&sort_by=count&sort_order=DESC
+- https://freesound.org/
+- https://superdevresources.com/free-music-sound-effects-games/
 
 # OpenCV Finger counting
 
