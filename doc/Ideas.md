@@ -133,7 +133,7 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 
 - https://github.com/yevgeniy-logachev/vfspp
 - https://github.com/anthony-y/tiny-vfs
-- http://www.icculus.org/physfs/ / http://www.icculus.org/physfs/downloads/?C=M;O=D
+- http://www.icculus.org/physfs/ / http://www.icculus.org/physfs/downloads/?C=M;O=D / https://hg.icculus.org/icculus/physfs/
 
 # portable sound library
 
