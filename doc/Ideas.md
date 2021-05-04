@@ -134,6 +134,9 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 - https://github.com/yevgeniy-logachev/vfspp
 - https://github.com/anthony-y/tiny-vfs
 - http://www.icculus.org/physfs/ / http://www.icculus.org/physfs/downloads/?C=M;O=D / https://hg.icculus.org/icculus/physfs/
+- https://www.randygaul.net/2019/03/20/virtual-file-systems-in-games/
+
+Single File: https://github.com/mattiasgustavsson/libs assetsys
 
 # portable sound library
 
