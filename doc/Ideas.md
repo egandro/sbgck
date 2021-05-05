@@ -143,10 +143,15 @@ Single File: https://github.com/mattiasgustavsson/libs assetsys <<< THIS one
 - https://sol.gfxile.net/soloud/downloads.html
 - https://sol.gfxile.net/soloud/soloud_20200207.pdf
 - https://github.com/bkaradzic/genie
-- https://github.com/jarikomppa/soloud << cool - has no Cmakefile
+- https://github.com/jarikomppa/soloud << cool - has Cmakefile in contrib
+- ^^^ sudo apt-get install libsdl2-dev
 
 - http://www.attr-x.net/yse/
 - ^^^ sudo apt-get install libportaudio2 portaudio19-dev libsndfile1 libsndfile1-dev libportmidi0 libportmidi-dev librtmidi-dev
+
+- https://github.com/mackron/miniaudio
+
+
 
 # Music and SFX
 
