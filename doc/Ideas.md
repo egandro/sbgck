@@ -136,14 +136,17 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 - http://www.icculus.org/physfs/ / http://www.icculus.org/physfs/downloads/?C=M;O=D / https://hg.icculus.org/icculus/physfs/
 - https://www.randygaul.net/2019/03/20/virtual-file-systems-in-games/
 
-Single File: https://github.com/mattiasgustavsson/libs assetsys
+Single File: https://github.com/mattiasgustavsson/libs assetsys <<< THIS one
 
 # portable sound library
 
 - https://sol.gfxile.net/soloud/downloads.html
 - https://sol.gfxile.net/soloud/soloud_20200207.pdf
 - https://github.com/bkaradzic/genie
-- https://github.com/jarikomppa/soloud
+- https://github.com/jarikomppa/soloud << cool - has no Cmakefile
+
+- http://www.attr-x.net/yse/
+- ^^^ sudo apt-get install libportaudio2 portaudio19-dev libsndfile1 libsndfile1-dev libportmidi0 libportmidi-dev librtmidi-dev
 
 # Music and SFX
 
