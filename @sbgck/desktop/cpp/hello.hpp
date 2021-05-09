@@ -15,6 +15,7 @@ namespace sbgck
     static void MethodHello(const FunctionCallbackInfo<Value> &args);
     static void MethodGetOpenCVVersion(const FunctionCallbackInfo<Value> &args);
     static void MethodGetSoloudVersion(const FunctionCallbackInfo<Value> &args);
+    static void MethodVFSTest(const FunctionCallbackInfo<Value> &args);
   };
 
 } // namespace sbgck

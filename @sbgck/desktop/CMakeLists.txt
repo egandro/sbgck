@@ -53,7 +53,7 @@ ExternalProject_Add(sbgck_opencv_lib
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
 )
 
-ExternalProject_Add(cpp_game_lib
+ExternalProject_Add(libs_lib
     GIT_REPOSITORY https://github.com/egandro/libs
     GIT_TAG main
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
@@ -80,3 +80,4 @@ target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} sbgck_openc
 
 add_dependencies(${PROJECT_NAME} soloud_lib)
 add_dependencies(${PROJECT_NAME} sbgck_opencv_lib)
+add_dependencies(${PROJECT_NAME} libs_lib)

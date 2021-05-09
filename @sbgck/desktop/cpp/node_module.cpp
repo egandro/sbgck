@@ -23,6 +23,7 @@ namespace sbgck
     NODE_SET_METHOD(exports, "hello", Hello::MethodHello);
     NODE_SET_METHOD(exports, "openCVversion", Hello::MethodGetOpenCVVersion);
     NODE_SET_METHOD(exports, "soloudVersion", Hello::MethodGetSoloudVersion);
+    NODE_SET_METHOD(exports, "vfstest", Hello::MethodVFSTest);
   }
 
   NODE_MODULE(NODE_GYP_MODULE_NAME, Initialize)

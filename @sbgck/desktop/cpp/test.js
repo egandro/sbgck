@@ -1,5 +1,7 @@
 const desktop = require('../build/Release/desktop');
 
+console.log("hello", desktop.hello());
+
 console.log("openCVversion", desktop.openCVversion());
 console.log("soloudVersion", desktop.soloudVersion());
 
@@ -13,5 +15,5 @@ console.log("soloudVersion", desktop.soloudVersion());
 // console.log(desktop.hello());
 // console.log(desktop.json("dead beef"));
 
-
-console.log("hello", desktop.hello());
+console.log(desktop.vfstest(__dirname));
+//console.log(desktop.vfstest("./"));

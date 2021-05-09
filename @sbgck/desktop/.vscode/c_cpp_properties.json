@@ -5,6 +5,7 @@
             "includePath": [
                 "${default}",
                 "${workspaceFolder}/cpp",
+                "${workspaceFolder}/build/external/include",
                 "/usr/include/node"
             ],
             "defines": [
@@ -20,7 +21,8 @@
             "name": "Win32",
             "includePath": [
                 "${default}",
-                "${workspaceFolder}\\**",
+                "${workspaceFolder}\\cpp",
+                "${workspaceFolder}\\build\\external\\include",
                 "${OPENCV_DIR}\\include",
                 "${HOMEPATH}\\.cmake-js\\node-x64\\**"
             ],
