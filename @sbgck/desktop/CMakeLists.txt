@@ -3,10 +3,18 @@
 # https://github.com/cmake-js/cmake-js/wiki/TUTORIAL-01-Creating-a-native-module-by-using-CMake.js-and-NAN
 # https://stackoverflow.com/questions/38006584/how-to-clone-and-integrate-external-from-git-cmake-project-into-local-one
 cmake_minimum_required (VERSION 3.2 FATAL_ERROR)
-include(ExternalProject)
 
 # Name of the project (will be the name of the plugin)
 project(desktop)
+
+include(FindGit)
+find_package(Git)
+
+if (NOT Git_FOUND)
+	message(FATAL_ERROR "Git not found!")
+endif ()
+
+include(ExternalProject)
 
 # opencv
 find_package(OpenCV REQUIRED)
@@ -17,14 +25,29 @@ IF(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 ENDIF()
 
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
-
-ExternalProject_Add(sbgck_opencv
-    GIT_REPOSITORY https://github.com/egandro/sbgck-opencv
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
-)
-
 include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
 link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
+
+# ExternalProject_Add(sbgck_opencv
+#     GIT_REPOSITORY https://github.com/egandro/sbgck-opencv
+#     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
+# )
+
+#if(LINUX)
+    ExternalProject_Add(soloud
+        GIT_REPOSITORY https://github.com/egandro/soloud
+        SOURCE_SUBDIR contrib
+        CMAKE_ARGS -DSOLOUD_BACKEND_SDL2=OFF -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION} -DSOLOUD_BACKEND_ALSA=ON
+    )
+#endif()
+
+#if(WIN32)
+#    ExternalProject_Add(soloud
+#        GIT_REPOSITORY https://github.com/jarikomppa/soloud
+#        SOURCE_SUBDIR contrib
+#        CMAKE_ARGS -DSOLOUD_BACKEND_SDL2=OFF -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION} -DSOLOUD_BACKEND_WINMM=ON
+#    )
+#endif()
 
 # Build a shared library named after the project from the files in `cpp/`
 file(GLOB SOURCE_FILES "cpp/*.cpp" "cpp/*.hpp")
