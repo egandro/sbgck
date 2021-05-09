@@ -2,6 +2,7 @@
 
 #include <sbgck_opencv/log.hpp>
 #include <sbgck_opencv/version.hpp>
+#include <soloud/soloud.h>
 #include "hello.hpp"
 
 namespace sbgck
@@ -21,6 +22,16 @@ namespace sbgck
   {
     Isolate *isolate = args.GetIsolate();
     args.GetReturnValue().Set(String::NewFromUtf8(isolate, getOpenCVVersion()).ToLocalChecked());
+  }
+
+  void Hello::MethodGetSoloudVersion(const FunctionCallbackInfo<Value> &args)
+  {
+    Isolate *isolate = args.GetIsolate();
+    SoLoud::Soloud soLoud;
+
+    int version = soLoud.getVersion();
+
+    args.GetReturnValue().Set(v8::Number::New(isolate, version));
   }
 
 } // namespace sbgck

@@ -3,7 +3,7 @@
 #include <sbgck_opencv/log.hpp>
 #include "hello.hpp"
 
-// structlog LOGCFG = {};
+structlog LOGCFG = {};
 
 namespace sbgck
 {
@@ -21,7 +21,8 @@ namespace sbgck
       Log(INFO) << "Initialize()";
     }
     NODE_SET_METHOD(exports, "hello", Hello::MethodHello);
-    NODE_SET_METHOD(exports, "version", Hello::MethodGetOpenCVVersion);
+    NODE_SET_METHOD(exports, "openCVversion", Hello::MethodGetOpenCVVersion);
+    NODE_SET_METHOD(exports, "soloudVersion", Hello::MethodGetSoloudVersion);
   }
 
   NODE_MODULE(NODE_GYP_MODULE_NAME, Initialize)
