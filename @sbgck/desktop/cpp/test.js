@@ -16,4 +16,3 @@ console.log("soloudVersion", desktop.soloudVersion());
 // console.log(desktop.json("dead beef"));
 
 console.log(desktop.vfstest(__dirname));
-//console.log(desktop.vfstest("./"));

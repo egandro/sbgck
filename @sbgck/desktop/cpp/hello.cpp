@@ -1,5 +1,7 @@
 #include <node.h>
 
+#include <regex>
+
 #include <sbgck_opencv/log.hpp>
 #include <sbgck_opencv/version.hpp>
 #include <soloud/soloud.h>
@@ -57,16 +59,22 @@ namespace sbgck
       return;
     }
 
-    String::Utf8Value str(isolate, args[0]);
+    String::Utf8Value param0(isolate, args[0]);
 
-    if (str.length() == 0)
+    if (param0.length() == 0)
     {
       isolate->ThrowException(Exception::TypeError(
           String::NewFromUtf8(isolate, "Wrong arguments").ToLocalChecked()));
       return;
     }
 
-    Log(INFO) << "MethodVFSTest directory: '" << *str << "'";
+    std::string str = *param0;
+
+    // windows cure for assetsys
+    std::regex r("\\\\");
+    str = std::regex_replace(str, r, "/");
+
+    Log(INFO) << "MethodVFSTest directory: '" << str << "'";
 
     std::string result = "Data from VFS:\n";
 
@@ -74,7 +82,7 @@ namespace sbgck
     const char *path = "/data";
 
     assetsys_t *assetsys = assetsys_create(0);
-    assetsys_error_t status = assetsys_mount(assetsys, *str, path);
+    assetsys_error_t status = assetsys_mount(assetsys, str.c_str(), path);
     Log(INFO) << "MethodVFSTest status: " << status;
 
     if( status == ASSETSYS_SUCCESS) {
@@ -88,6 +96,8 @@ namespace sbgck
           Log(INFO) << "MethodVFSTest file found: " << file_name;
           if(file_name != NULL) {
             result += "    ";
+            result += path;
+            result += "/";
             result += file_name;
             result += "\n";
           }
