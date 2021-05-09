@@ -1,6 +1,7 @@
 #include <node.h>
 
-// #include <log.hpp>
+#include <sbgck_opencv/log.hpp>
+#include <sbgck_opencv/version.hpp>
 #include "hello.hpp"
 
 namespace sbgck
@@ -14,6 +15,12 @@ namespace sbgck
   {
     Isolate *isolate = args.GetIsolate();
     args.GetReturnValue().Set(String::NewFromUtf8(isolate, "world").ToLocalChecked());
+  }
+
+  void Hello::MethodGetOpenCVVersion(const FunctionCallbackInfo<Value> &args)
+  {
+    Isolate *isolate = args.GetIsolate();
+    args.GetReturnValue().Set(String::NewFromUtf8(isolate, getOpenCVVersion()).ToLocalChecked());
   }
 
 } // namespace sbgck

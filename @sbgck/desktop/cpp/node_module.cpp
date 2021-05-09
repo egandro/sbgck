@@ -1,6 +1,6 @@
 #include <node.h>
 
-// #include <log.hpp>
+#include <sbgck_opencv/log.hpp>
 #include "hello.hpp"
 
 // structlog LOGCFG = {};
@@ -14,13 +14,14 @@ namespace sbgck
   {
     if (getenv("DEBUG"))
     {
-      // LOGCFG.prefix = (char *)NODE_MODULE_NAME;
-      // LOGCFG.headers = true;
-      // LOGCFG.level = DEBUG;
+      LOGCFG.prefix = (char *)NODE_MODULE_NAME;
+      LOGCFG.headers = true;
+      LOGCFG.level = DEBUG;
 
-      // Log(INFO) << "Initialize()";
+      Log(INFO) << "Initialize()";
     }
     NODE_SET_METHOD(exports, "hello", Hello::MethodHello);
+    NODE_SET_METHOD(exports, "version", Hello::MethodGetOpenCVVersion);
   }
 
   NODE_MODULE(NODE_GYP_MODULE_NAME, Initialize)

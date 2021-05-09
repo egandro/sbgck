@@ -28,26 +28,36 @@ set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
 include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
 link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 
-# ExternalProject_Add(sbgck_opencv
-#     GIT_REPOSITORY https://github.com/egandro/sbgck-opencv
-#     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
-# )
+# audio backends
+if(UNIX AND NOT APPLE)
+    # on Linux
+    set (SOLOUD_BACKEND "-DSOLOUD_BACKEND_ALSA=ON")
+    link_directories(${EXTERNAL_INSTALL_LOCATION}/lib64)
+endif()
+if(WIN32)
+    set (SOLOUD_BACKEND "-DSOLOUD_BACKEND_WINMM=ON")
+endif()
+if(APPLE)
+    set (SOLOUD_BACKEND "-DSOLOUD_BACKEND_COREAUDIO=ON")
+endif()
 
-#if(LINUX)
-    ExternalProject_Add(soloud
-        GIT_REPOSITORY https://github.com/egandro/soloud
-        SOURCE_SUBDIR contrib
-        CMAKE_ARGS -DSOLOUD_BACKEND_SDL2=OFF -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION} -DSOLOUD_BACKEND_ALSA=ON
-    )
-#endif()
+ExternalProject_Add(soloud_lib
+    # we need this here because ALSA isn't present in the default
+    GIT_REPOSITORY https://github.com/egandro/soloud
+    SOURCE_SUBDIR contrib
+    CMAKE_ARGS -DSOLOUD_BACKEND_SDL2=OFF -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION} ${SOLOUD_BACKEND}
+)
 
-#if(WIN32)
-#    ExternalProject_Add(soloud
-#        GIT_REPOSITORY https://github.com/jarikomppa/soloud
-#        SOURCE_SUBDIR contrib
-#        CMAKE_ARGS -DSOLOUD_BACKEND_SDL2=OFF -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION} -DSOLOUD_BACKEND_WINMM=ON
-#    )
-#endif()
+ExternalProject_Add(sbgck_opencv_lib
+    GIT_REPOSITORY https://github.com/egandro/sbgck-opencv
+    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
+)
+
+ExternalProject_Add(cpp_game_lib
+    GIT_REPOSITORY https://github.com/egandro/libs
+    GIT_TAG main
+    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
+)
 
 # Build a shared library named after the project from the files in `cpp/`
 file(GLOB SOURCE_FILES "cpp/*.cpp" "cpp/*.hpp")
@@ -63,6 +73,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 # You should add this line in every CMake.js based project
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_JS_INC} ${OpenCV_INCLUDE_DIRS} "cpp/")
 
+
 # Essential library files to link to a node addon
 # You should add this line in every CMake.js based project
-target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS})
+target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} sbgck_opencv soloud)
+
+add_dependencies(${PROJECT_NAME} soloud_lib)
+add_dependencies(${PROJECT_NAME} sbgck_opencv_lib)

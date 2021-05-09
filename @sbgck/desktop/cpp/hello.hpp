@@ -13,6 +13,7 @@ namespace sbgck
   {
   public:
     static void MethodHello(const FunctionCallbackInfo<Value> &args);
+    static void MethodGetOpenCVVersion(const FunctionCallbackInfo<Value> &args);
   };
 
 } // namespace sbgck
