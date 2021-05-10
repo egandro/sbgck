@@ -164,3 +164,7 @@ Single File: https://github.com/mattiasgustavsson/libs assetsys <<< THIS one
 # OpenCV Finger counting
 
 - https://www.youtube.com/watch?v=p5Z_GGRCI5s
+
+# App for game instructions
+
+- https://dized.com
