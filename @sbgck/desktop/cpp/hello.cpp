@@ -7,7 +7,7 @@
 #include <soloud/soloud.h>
 
 #define ASSETSYS_IMPLEMENTATION
-#include "libs/assetsys.h"
+#include <libs/assetsys.h>
 #define STRPOOL_IMPLEMENTATION
 #include <libs/strpool.h>
 
