@@ -50,6 +50,8 @@
   - Use the C++ addons API (https://nodejs.org/api/addons.html) -> we will be a npm module.
 - We will go with the npm module (with C++ part). The module will contain the desktop version of SBGCK abstracted access to OpenCV. We might provide static linked OpenCV versions here (not sure).
 - We will need a npm module containing the runtime and sdk. We provide the same npm module (without any C++ part) for desktop and mobile.
+- Embedding node in android <https://www.sisik.eu/blog/android/other/embedding-node-into-android-app>
+
 
 ## Ideas for a UI
 
