@@ -83,6 +83,7 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 - https://github.com/riskiest/color_calibration/tree/v4/doc/pdf/English/Algorithm
 
 - https://github.com/adrianzgaljic/ColorCalibration
+- https://www.youtube.com/watch?v=0rYtZtY5ML4 histogram tutorial for OpenCV
 
 
 ## Diff images
