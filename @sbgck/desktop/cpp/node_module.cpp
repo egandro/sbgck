@@ -16,9 +16,9 @@ namespace sbgck
     {
       LOGCFG.prefix = (char *)NODE_MODULE_NAME;
       LOGCFG.headers = true;
-      LOGCFG.level = DEBUG;
+      LOGCFG.level = typelog::DEBUG;
 
-      Log(INFO) << "Initialize()";
+      Log(typelog::INFO) << "Initialize()";
     }
     NODE_SET_METHOD(exports, "hello", Hello::MethodHello);
     NODE_SET_METHOD(exports, "openCVversion", Hello::MethodGetOpenCVVersion);

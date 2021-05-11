@@ -74,7 +74,7 @@ namespace sbgck
     std::regex r("\\\\");
     str = std::regex_replace(str, r, "/");
 
-    Log(INFO) << "MethodVFSTest directory: '" << str << "'";
+    Log(typelog::INFO) << "MethodVFSTest directory: '" << str << "'";
 
     std::string result = "Data from VFS:\n";
 
@@ -83,17 +83,17 @@ namespace sbgck
 
     assetsys_t *assetsys = assetsys_create(0);
     assetsys_error_t status = assetsys_mount(assetsys, str.c_str(), path);
-    Log(INFO) << "MethodVFSTest status: " << status;
+    Log(typelog::INFO) << "MethodVFSTest status: " << status;
 
     if( status == ASSETSYS_SUCCESS) {
-      Log(INFO) << "MethodVFSTest mounted";
+      Log(typelog::INFO) << "MethodVFSTest mounted";
       // Print file names
       int count = assetsys_file_count(assetsys, path);
-      Log(INFO) << "MethodVFSTest count: " << count;
+      Log(typelog::INFO) << "MethodVFSTest count: " << count;
       for (int i = 0; i < count; ++i)
       {
           char const *file_name = assetsys_file_name(assetsys, path, i);
-          Log(INFO) << "MethodVFSTest file found: " << file_name;
+          Log(typelog::INFO) << "MethodVFSTest file found: " << file_name;
           if(file_name != NULL) {
             result += "    ";
             result += path;
@@ -103,7 +103,7 @@ namespace sbgck
           }
       }
     }
-    Log(INFO) << "MethodVFSTest unmounted";
+    Log(typelog::INFO) << "MethodVFSTest unmounted";
     assetsys_destroy(assetsys);
 
     args.GetReturnValue().Set(String::NewFromUtf8(isolate, result.c_str()).ToLocalChecked());

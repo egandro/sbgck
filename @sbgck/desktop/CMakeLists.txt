@@ -24,39 +24,19 @@ IF(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     SET ( CMAKE_CXX_FLAGS "-Wno-psabi" )
 ENDIF()
 
-set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
+if(DEFINED EXTERNAL_INSTALL_LOCATION)
+    set(EXTERNAL_INSTALL_LOCATION ${EXTERNAL_INSTALL_LOCATION})
+else()
+    set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
+endif()
+#message("using EXTERNAL_INSTALL_LOCATION: ${EXTERNAL_INSTALL_LOCATION}")
+
 include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
 link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 
-# audio backends
-if(UNIX AND NOT APPLE)
-    # on Linux
-    set (SOLOUD_BACKEND "-DSOLOUD_BACKEND_ALSA=ON")
-    link_directories(${EXTERNAL_INSTALL_LOCATION}/lib64)
-endif()
-if(WIN32)
-    set (SOLOUD_BACKEND "-DSOLOUD_BACKEND_WINMM=ON")
-endif()
-if(APPLE)
-    set (SOLOUD_BACKEND "-DSOLOUD_BACKEND_COREAUDIO=ON")
-endif()
-
-ExternalProject_Add(soloud_lib
-    # we need this here because ALSA isn't present in the default
-    GIT_REPOSITORY https://github.com/egandro/soloud
-    SOURCE_SUBDIR contrib
-    CMAKE_ARGS -DSOLOUD_BACKEND_SDL2=OFF -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION} ${SOLOUD_BACKEND}
-)
-
-ExternalProject_Add(sbgck_opencv_lib
-    GIT_REPOSITORY https://github.com/egandro/sbgck-opencv
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
-)
-
-ExternalProject_Add(libs_lib
-    GIT_REPOSITORY https://github.com/egandro/libs
-    GIT_TAG main
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
+ExternalProject_Add(sbgck_core_lib
+    GIT_REPOSITORY https://github.com/egandro/sbgck-core
+    CMAKE_ARGS -DEXTERNAL_INSTALL_LOCATION=${EXTERNAL_INSTALL_LOCATION} -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
 )
 
 # Build a shared library named after the project from the files in `cpp/`
@@ -76,8 +56,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_JS_INC} ${OpenCV_INCL
 
 # Essential library files to link to a node addon
 # You should add this line in every CMake.js based project
-target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} sbgck_opencv soloud)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} sbgck_core sbgck_opencv soloud)
 
-add_dependencies(${PROJECT_NAME} soloud_lib)
-add_dependencies(${PROJECT_NAME} sbgck_opencv_lib)
-add_dependencies(${PROJECT_NAME} libs_lib)
+add_dependencies(${PROJECT_NAME} sbgck_core_lib)
