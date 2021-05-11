@@ -153,6 +153,7 @@ Single File: https://github.com/mattiasgustavsson/libs assetsys <<< THIS one
 - ^^^ sudo apt-get install libportaudio2 portaudio19-dev libsndfile1 libsndfile1-dev libportmidi0 libportmidi-dev librtmidi-dev
 
 - https://github.com/mackron/miniaudio
+- Soloud: Android CMake -> https://github.com/jarikomppa/soloud/issues/168
 
 
 
