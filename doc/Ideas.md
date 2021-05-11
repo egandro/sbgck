@@ -169,3 +169,7 @@ Single File: https://github.com/mattiasgustavsson/libs assetsys <<< THIS one
 # App for game instructions
 
 - https://dized.com
+
+# Custom Code Generator in Cmake
+
+- https://crascit.com/2017/04/18/generated-sources-in-cmake-builds/
