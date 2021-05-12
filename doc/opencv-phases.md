@@ -87,6 +87,7 @@
 - We use the diff image here
 - Image detection is using the feature detector
 - Precalculate the keypoints
+- We might can use this for cards e.g. yes / no or ok / stop cards
 
 #### Token inside ROI
 
@@ -99,6 +100,7 @@
 
 ## Open
 
-- Remote detection
-- Remote button detection
-- Specific handling of dice detection
+- Remote control detection
+- Remote control button detection
+- Handling of dice board detection
+- Handling of dice detection
