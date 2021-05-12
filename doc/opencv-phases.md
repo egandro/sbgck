@@ -18,7 +18,7 @@
 - get a picture of the (empty) map
 - create homography for later use to skip keypoint calculation
 - make this stateless and allow to repeat this any time
-- allow to use sub maps
+- reuse this part for sub maps
 
 ## Phase: Color calibration (for tokens/dice)
 
@@ -32,6 +32,7 @@
 - A game might have sub maps
 - for sub maps we just do a calibration of map step and save this map for later use
 - if the sub map needs to be removed, we restore the original calibration map for the further steps
+- A dice sub map might be a solid color e.g. white or black. We might need to use the shape detector for that.
 
 ## Phase: Token detection
 
