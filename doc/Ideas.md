@@ -138,6 +138,8 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 - Try example 30 instead of 29
 - ORB detector + ideas how to improve feature detection: https://stackoverflow.com/questions/38309335/c-opencv-feature-detection-with-orb
 
+- http://datahacker.rs/feature-matching-methods-comparison-in-opencv/
+
 
 ## Virtual Filesystem
 

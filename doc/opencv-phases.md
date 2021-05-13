@@ -7,11 +7,14 @@
 - IP Camera
 - while(true) getNextFrame() loop
 - (re-)initialization of camera
-- support IP parameters (get/post params)
+- make this stateless and allow to repeat this any time
+
+TODO:
+
+- support IP-Webcam based parameters (get/post params)
 - support OpenCV parameters
 - parameter might be: zoom level, autofocus, white balance, ...
 - apply parameters via JSON
-- make this stateless and allow to repeat this any time
 
 ## Phase: Calibration of Map
 
