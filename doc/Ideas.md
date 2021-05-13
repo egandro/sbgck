@@ -135,7 +135,8 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 
 - https://www.youtube.com/watch?v=DZtUt4bKtmY
 - source code: https://github.com/bnsreenu/python_for_microscopists
--
+- Try example 30 instead of 29
+- ORB detector + ideas how to improve feature detection: https://stackoverflow.com/questions/38309335/c-opencv-feature-detection-with-orb
 
 
 ## Virtual Filesystem
