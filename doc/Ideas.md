@@ -131,6 +131,10 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 
 - https://github.com/andli/dicecounter <<<
 
+## Enhance the Feature2D detection
+
+- https://www.youtube.com/watch?v=DZtUt4bKtmY
+
 
 ## Virtual Filesystem
 

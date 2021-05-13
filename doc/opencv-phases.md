@@ -105,3 +105,5 @@
 - Remote control button detection
 - Handling of dice board detection
 - Handling of dice detection
+- Handling of card detection (might be reduced to token detection)
+- Multiple feature detection
