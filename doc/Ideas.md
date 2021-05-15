@@ -140,6 +140,15 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 
 - http://datahacker.rs/feature-matching-methods-comparison-in-opencv/
 
+## Find complex shapes in OpenCV
+
+- Moments: https://www.youtube.com/watch?v=SZxJb4wtaRU
+- https://docs.opencv.org/3.4/d0/d49/tutorial_moments.html < moments: center of contour
+- https://laptrinhx.com/practical-opencv-3-image-processing-with-python-245001203/
+- Also contains a point in polygon test: http://devdoc.net/linux/OpenCV-3.2.0/d3/dc0/group__imgproc__shape.html
+- https://stackoverflow.com/questions/40996514/i-would-like-to-detect-a-custom-shape-using-opencv < highlevel view what is todo
+
+
 
 ## Virtual Filesystem
 
