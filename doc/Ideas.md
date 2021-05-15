@@ -147,7 +147,9 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 - https://laptrinhx.com/practical-opencv-3-image-processing-with-python-245001203/
 - Also contains a point in polygon test: http://devdoc.net/linux/OpenCV-3.2.0/d3/dc0/group__imgproc__shape.html
 - https://stackoverflow.com/questions/40996514/i-would-like-to-detect-a-custom-shape-using-opencv < highlevel view what is todo
-
+- Match Shapes: https://docs.opencv.org/3.4/d3/dc0/group__imgproc__shape.html#gaadc90cb16e2362c9bd6e7363e6e4c317
+- ^^^test if two contours are similar
+- example: https://www.programmersought.com/article/96954419978/
 
 
 ## Virtual Filesystem
