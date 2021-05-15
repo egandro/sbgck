@@ -87,6 +87,9 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 - https://github.com/adrianzgaljic/ColorCalibration
 - https://www.youtube.com/watch?v=0rYtZtY5ML4 histogram tutorial for OpenCV
 
+- Good Article: https://www.bluetin.io/opencv/opencv-color-detection-filtering-python/
+-
+
 
 ## Diff images
 
