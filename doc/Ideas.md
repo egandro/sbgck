@@ -99,6 +99,8 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 
 # Online t2s
 
+evaluate this: https://ttsmp3.com/ (has better handling)
+
 $ sudo apt-get install jq
 
 FILENAME=voice.mp3

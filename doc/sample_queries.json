@@ -1,0 +1,41 @@
+[
+    {
+        "name": "Find yes or no card or timeout",
+        "timeout": 120,
+        "tokens": [
+            "Card Yes",
+            "Card No"
+        ]
+    },
+    {
+        "name": "Query ROI or location (x,y + bounding box) for token x",
+        "timeout": 10,
+        "tokens": [
+            "Blue Pentagon",
+            "Green Rectangle",
+            "Yellow Square"
+        ]
+    },
+    {
+        "name": "Is token x in a ROI?",
+        "timeout": 10,
+        "ROI": [
+            "#storageRoom",
+            "#boxes"
+        ],
+        "tokens": [
+            "Yellow Rectangle"
+        ]
+    },
+    {
+        "name": "Enable remote detection",
+        "remote": [
+            "Front",
+            "Back"
+        ]
+    },
+    {
+        "name": "Disable remote detection",
+        "remote": []
+    }
+]
