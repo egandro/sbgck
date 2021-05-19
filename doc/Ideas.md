@@ -66,6 +66,8 @@
 ## Ideas for mobile app
 
 - We might go with PhoneGap or similar (might be a pain combining that with OpenCV)
+- PhoneGap is dead - welcome Cordoba!
+- combine Cordoba with Angular: https://medium.com/@EliaPalme/how-to-wrap-an-angular-app-with-apache-cordova-909024a25d7
 
 ## SVGs
 
