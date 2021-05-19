@@ -21,7 +21,7 @@
 - https://github.com/nut-tree/npm-opencv-build#readme
 - https://github.com/nut-tree/opencv4nodejs
 
-# Consistency checks
+## Consistency checks
 
 - Test OpenCV Setup
   - Visual Studio Command Prompt (my be here: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 201x\Visual Studio Tools) - change x :)
@@ -32,4 +32,3 @@
   - cmake --build . --config Release
   - Release\hello_world_opencv.exe
 - TBD add more
-
