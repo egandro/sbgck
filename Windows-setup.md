@@ -16,6 +16,8 @@
   - Add this variables to the environment (must be done with the UI not on a cmd prompt)
   - OPENCV_DIR=C:\tools\opencv\build
   - PATH append this %OPENCV_DIR%\x64\vc15\bin
+- GNU make for Android
+  - choco install make
 - https://nhancv.medium.com/build-opencv-opencv-contrib-on-windows-2e3b1ca96955
 - https://cv-tricks.com/how-to/installation-of-opencv-4-1-0-in-windows-10-from-source/
 - https://github.com/nut-tree/npm-opencv-build#readme
