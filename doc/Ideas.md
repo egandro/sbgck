@@ -138,6 +138,10 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 
 - https://github.com/andli/dicecounter <<<
 
+# Diceboard Detection
+
+- https://stackoverflow.com/questions/44127342/detect-card-minarea-quadrilateral-from-contour-opencv/44131530
+
 ## Enhance the Feature2D detection
 
 - https://www.youtube.com/watch?v=DZtUt4bKtmY
@@ -181,8 +185,6 @@ Single File: https://github.com/mattiasgustavsson/libs assetsys <<< THIS one
 
 - https://github.com/mackron/miniaudio
 - Soloud: Android CMake -> https://github.com/jarikomppa/soloud/issues/168
-
-
 
 # Music and SFX
 
