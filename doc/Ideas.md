@@ -44,6 +44,7 @@
 - https://github.com/VlSomers/native-opencv-android-template
 - https://forum.opencv.org/t/not-able-to-build-opencv-4-5-1-for-android/1073/2
 - https://github.com/opencv/opencv/issues/15457
+- https://lindevs.com/integrate-opencv-4-into-android-via-gradle/
 
 
 ## Ideas on NodeJS
