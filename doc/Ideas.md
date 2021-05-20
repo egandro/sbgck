@@ -41,6 +41,8 @@
 
 - https://philipplies.medium.com/setting-up-latest-opencv-for-android-studio-and-kotlin-2021-edition-259be404b133
 - https://amin-ahmadi.com/2019/02/03/how-to-build-opencv-4-x-for-native-android-development/
+- https://github.com/VlSomers/native-opencv-android-template
+
 
 
 ## Ideas on NodeJS
