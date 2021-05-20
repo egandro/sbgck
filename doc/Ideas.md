@@ -141,6 +141,7 @@ curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 # Diceboard Detection
 
 - https://stackoverflow.com/questions/44127342/detect-card-minarea-quadrilateral-from-contour-opencv/44131530
+- https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html
 
 ## Enhance the Feature2D detection
 
