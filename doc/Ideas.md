@@ -137,6 +137,9 @@ JSON=$(curl -s \
 
 curl -s -o ${FILENAME} https://freetts.com/audio/$(echo ${JSON}  | jq -r ' .id')
 
+## Ink (Game Language - alternative to NodeJS)
+
+- https://www.inklestudios.com/ink/web-tutorial/
 
 ## Ideas for Dice Detection
 
