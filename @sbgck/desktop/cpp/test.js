@@ -1,5 +1,10 @@
 const desktop = require('../build/Release/desktop');
 
+var functionString = "desktop.hello";
+eval("typeof " + functionString); // returns "undefined" or "function"
+console.log("typeof desktop.hellox", typeof(desktop.hellox));
+console.log("typeof desktop.hello", typeof(desktop.hello));
+
 console.log("hello", desktop.hello());
 
 console.log("openCVversion", desktop.openCVversion());
