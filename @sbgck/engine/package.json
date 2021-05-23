@@ -11,12 +11,33 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "@gerhobbelt/nomnom": "^1.8.4-31",
     "@types/node": "^14.14.31",
+    "adm-zip": "^0.5.5",
+    "export-to-csv": "^0.2.1",
+    "fast-xml-parser": "^3.19.0",
+    "hasbin": "^1.2.3",
+    "javascript-state-machine": "^3.1.0",
+    "node-fetch": "^2.6.1",
+    "pofile": "^1.1.1",
+    "string-strip-html": "^8.2.13",
     "ts-node": "^9.1.1",
+    "ttag": "^1.7.24",
+    "ttag-cli": "^1.9.2",
     "typescript": "^4.2.2"
   },
   "bin": {
-    "sbgck": "./bin/cli.js"
+    "sbgck": "launcher.js"
+  },
+  "babel": {
+    "plugins": [
+      [
+        "@babel/plugin-proposal-private-methods",
+        {
+          "loose": true
+        }
+      ]
+    ]
   }
 }
