@@ -1,5 +1,6 @@
 const fs = require('fs');
 const crpt = require('crypto');
+const hasbin = require('hasbin');
 const { execSync } = require('child_process');
 const PO = require('pofile');
 import { stripHtml } from "string-strip-html";
@@ -34,7 +35,6 @@ export interface Message {
 export class PoTools {
     // get the bin path of npm by calling "npm bin"
     private static readonly npmBinPath = execSync("npm bin").toString().trim();
-    private static readonly ttagCmd = PoTools.npmBinPath + "/" + "ttag";
 
     private static writeVoiceActorCVSFile(targetDir: string, language: string, messages: Message[], isTTS: boolean): boolean {
         const options: Options = {
@@ -48,7 +48,7 @@ export class PoTools {
         };
 
         let csvFile = targetDir + "/" + language + "_voice_actor" + ".csv";
-        if(isTTS) {
+        if (isTTS) {
             csvFile = targetDir + "/" + language + "_tts" + ".csv";
         }
         const csvExporter = new ExportToCsv(options);
@@ -69,7 +69,7 @@ export class PoTools {
 
         for (const item of po.items) {
             let str: string;
-            if(item.msgstr == null || item.msgstr === undefined || item.msgstr.length == 0 || item.msgstr[0].trim().length == 0) {
+            if (item.msgstr == null || item.msgstr === undefined || item.msgstr.length == 0 || item.msgstr[0].trim().length == 0) {
                 // not translated, yet
                 str = item.msgid;
             } else {
@@ -112,7 +112,7 @@ export class PoTools {
         return result;
     }
 
-    public static createOrUpdatePoFiles(sourceDir: string, targetDir: string,  languages: string): boolean {
+    public static createOrUpdatePoFiles(sourceDir: string, targetDir: string, languages: string): boolean {
 
         if (!fs.existsSync(sourceDir)) {
             console.error(`error: source directory does not exist "${sourceDir}"`);
@@ -133,11 +133,11 @@ export class PoTools {
         for (const i in langs) {
             const lang = langs[i].trim();
 
-            if(!PoTools.createOrUpdatePoFile(sourceDir, targetDir, lang)) {
+            if (!PoTools.createOrUpdatePoFile(sourceDir, targetDir, lang)) {
                 return false;
             }
 
-            if(!PoTools.createVoiceActorListFromPoFile(targetDir, lang)) {
+            if (!PoTools.createVoiceActorListFromPoFile(targetDir, lang)) {
                 return false;
             }
         }
@@ -162,17 +162,31 @@ export class PoTools {
         }
 
         const poFile = targetDir + "/" + language + ".po";
+        let ttagCmd = "ttag";
+
+        if(!hasbin.sync('magick')) {
+            ttagCmd = PoTools.npmBinPath + "/" + "ttag";
+
+            if(!fs.existsSync(ttagCmd) && !fs.existsSync(ttagCmd+".cmd")) {
+                // not in node_module/.bin folder
+                const childPath = PoTools.npmBinPath.replace("/.bin$/", "@sbgck/engine/.bin");
+                ttagCmd = childPath + "/" + "ttag";
+                if(!fs.existsSync(ttagCmd) && !fs.existsSync(ttagCmd+".cmd")) {
+                    console.error(`error: can't find ttag file - install via "npm install ttag-cli--save-dev"`);
+                }
+            }
+        }
 
         // init
         if (!fs.existsSync(poFile)) {
-            let cmd = PoTools.ttagCmd + ` init ${language} ${poFile}`;
+            let cmd = ttagCmd + ` init ${language} ${poFile}`;
             execSync(cmd);
         } else {
             // console.log(`${poFile} exists - init skip`);
         }
 
         // update
-        let cmd = PoTools.ttagCmd + ` update ${poFile} ${sourceDir}`;
+        let cmd = ttagCmd + ` update ${poFile} ${sourceDir}`;
         execSync(cmd);
 
         return true;
@@ -188,12 +202,12 @@ export class PoTools {
 
         const flavors = [false, true];
 
-        for(const isTTS of flavors) {
+        for (const isTTS of flavors) {
             const messages = PoTools.getMessagesFromPoFile(poFile, isTTS);
-            if(messages.length == 0) {
+            if (messages.length == 0) {
                 return false;
             }
-            if(!PoTools.writeVoiceActorCVSFile(targetDir, language, messages, isTTS)) {
+            if (!PoTools.writeVoiceActorCVSFile(targetDir, language, messages, isTTS)) {
                 return false;
             }
         }

@@ -2,7 +2,6 @@ const parser = require('fast-xml-parser');
 const fs = require('fs');
 const path = require('path');
 
-
 export class MapTools {
     public static verbose = false;
 
