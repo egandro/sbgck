@@ -95,12 +95,34 @@ https://stackoverflow.com/questions/31367604/convert-svg-image-to-png-with-trans
 - https://plantcv.readthedocs.io/en/latest/transform_color_correction_tutorial/
 - https://chowdera.com/2020/12/20201211100511430e.html
 - https://github.com/riskiest/color_calibration/tree/v4/doc/pdf/English/Algorithm
-
+-  https://docs.opencv.org/master/de/df4/group__color__correction.html
 - https://github.com/adrianzgaljic/ColorCalibration
 - https://www.youtube.com/watch?v=0rYtZtY5ML4 histogram tutorial for OpenCV
+- https://www.pantone.com/pantone-color-match-card
+- https://arxiv.org/pdf/1810.08639.pdf
+- https://en.wikipedia.org/wiki/ColorChecker
+- https://en.wikipedia.org/wiki/File:Color_Checker.pdf
+
 
 - Good Article: https://www.bluetin.io/opencv/opencv-color-detection-filtering-python/
--
+
+## Node Module
+- https://medium.com/@a7ul/beginners-guide-to-writing-nodejs-addons-using-c-and-n-api-node-addon-api-9b3b718a9a7f
+- https://nodejs.org/api/addons.html
+- https://www.npmjs.com/package/create-node-addon
+- realworld: https://github.com/lwille/node-gphoto2/blob/master/binding.gyp
+
+
+
+## Cmake
+
+- https://github.com/cmake-js/cmake-js/issues/200 Cmake.js for multiple archs
+- // arch for modules:
+- https://stackoverflow.com/questions/17739095 changing-processor-architecture-with-node-gyp-configure
+// this is complex shit :(
+-  (https://nodeaddons.com/cross-platform-addons-with-node-pre-gyp/)
+- https://www.docker.com/blog/multi-arch-images/
+- https://www.stereolabs.com/docs/docker/building-arm-container-on-x86/
 
 
 ## Diff images
