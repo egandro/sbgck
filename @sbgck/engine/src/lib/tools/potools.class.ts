@@ -164,7 +164,7 @@ export class PoTools {
         const poFile = targetDir + "/" + language + ".po";
         let ttagCmd = "ttag";
 
-        if(!hasbin.sync('magick')) {
+        if(!hasbin.sync('ttag')) {
             ttagCmd = PoTools.npmBinPath + "/" + "ttag";
 
             if(!fs.existsSync(ttagCmd) && !fs.existsSync(ttagCmd+".cmd")) {
