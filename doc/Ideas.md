@@ -200,6 +200,11 @@ Single File: https://github.com/mattiasgustavsson/libs assetsys <<< THIS one
 - https://github.com/mackron/miniaudio
 - Soloud: Android CMake -> https://github.com/jarikomppa/soloud/issues/168
 
+# NPM
+
+- https://medium.com/cameron-nokes/the-30-second-guide-to-publishing-a-typescript-package-to-npm-89d93ff7bccd
+
+
 # Music and SFX
 
 - https://opengameart.org/art-search-advanced?keys=&field_art_type_tid%5B%5D=13&sort_by=count&sort_order=DESC
