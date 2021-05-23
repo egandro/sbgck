@@ -1,6 +1,6 @@
 {
-  "name": "@sbgck/main",
-  "version": "1.0.0",
+  "name": "@sbgck/engine",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/modules.js",
   "types": "./dist/modules.d.ts",

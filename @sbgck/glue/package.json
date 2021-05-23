@@ -1,5 +1,5 @@
 {
-  "name": "@sbgck/desktop",
+  "name": "@sbgck/glue",
   "version": "0.0.0",
   "description": "",
   "main": "dist/modules.js",
