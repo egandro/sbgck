@@ -169,7 +169,10 @@ export class PoTools {
 
             if(!fs.existsSync(ttagCmd) && !fs.existsSync(ttagCmd+".cmd")) {
                 // not in node_module/.bin folder
-                const childPath = PoTools.npmBinPath.replace("/.bin$/", "@sbgck/engine/.bin");
+                const pos = PoTools.npmBinPath.indexOf(".bin");
+                let childPath =PoTools.npmBinPath.substring(0, pos);
+                // maybe in the child folder?
+                childPath = childPath + "@sbgck/engine/node_modules/.bin";
                 ttagCmd = childPath + "/" + "ttag";
                 if(!fs.existsSync(ttagCmd) && !fs.existsSync(ttagCmd+".cmd")) {
                     console.error(`error: can't find ttag file - install via "npm install ttag-cli--save-dev"`);
