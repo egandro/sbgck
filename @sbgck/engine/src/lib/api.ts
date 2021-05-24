@@ -18,8 +18,8 @@ export interface QueryTokenResult {
 export interface CoreNativeAPI {
     // dummy, native
     type: string;
-    //init(baseDir: string): boolean; // not used from NodeJS
-    //start(gameName: string, language: string): boolean; // not used from NodeJS
+    //init(baseDir: string, string cameraUrl): boolean; // not used from NodeJS
+    //loadGame(gameName: string, language: string): boolean; // not used from NodeJS
 
     // C++ functions
     playSample(str: string): void;
