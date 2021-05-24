@@ -76,7 +76,7 @@ export class PoTools {
                 str = item.msgstr[0]; // first
             }
             const message = PoTools.getMessage(str, !isTTS);
-            if (message == null) {
+            if (message.role == "") {
                 console.error(`error: in po file "${poFile}" - no "ROLE" in message: ${item.msgid} `);
                 return [];
             }
@@ -86,27 +86,26 @@ export class PoTools {
         return result;
     }
 
-    public static getMessage(msgid: string, clearHtmlTags: boolean = false): Message | null {
+    public static getMessage(msgid: string, clearHtmlTags: boolean = false): Message {
         const pos = msgid.indexOf("}");
 
+        // orders of members is important - it reflect the cvs order
+        const result: Message = {
+            mp3: "",
+            role: "",
+            message: ""
+        }
+
         if (pos < 0) {
-            return null;
+            return result;
         }
 
         const prefix = msgid.substring(0, pos + 1).trim();
-        const role = (prefix.replace("\$", "").replace("{", "").replace("}", "")).trim();
-        const rawText = msgid.substring(pos + 1, msgid.length).trim();
-        const mp3 = textToMp3Name(rawText); //make a more stable filename
-        let message = rawText;
+        result.role = (prefix.replace("\$", "").replace("{", "").replace("}", "")).trim();
+        result.message = msgid.substring(pos + 1, msgid.length).trim();
+        result.mp3 = textToMp3Name(result.message); //make a more stable filename
         if (clearHtmlTags) {
-            message = stripHtmlEntities(message);
-        }
-
-        // orders of members is important - it reflect the cvs order
-        const result = {
-            mp3: mp3,
-            role: role,
-            message: message
+            result.message = stripHtmlEntities(result.message);
         }
 
         return result;
@@ -164,17 +163,17 @@ export class PoTools {
         const poFile = targetDir + "/" + language + ".po";
         let ttagCmd = "ttag";
 
-        if(!hasbin.sync('ttag')) {
+        if (!hasbin.sync('ttag')) {
             ttagCmd = PoTools.npmBinPath + "/" + "ttag";
 
-            if(!fs.existsSync(ttagCmd) && !fs.existsSync(ttagCmd+".cmd")) {
+            if (!fs.existsSync(ttagCmd) && !fs.existsSync(ttagCmd + ".cmd")) {
                 // not in node_module/.bin folder
                 const pos = PoTools.npmBinPath.indexOf(".bin");
-                let childPath =PoTools.npmBinPath.substring(0, pos);
+                let childPath = PoTools.npmBinPath.substring(0, pos);
                 // maybe in the child folder?
                 childPath = childPath + "@sbgck/engine/node_modules/.bin";
                 ttagCmd = childPath + "/" + "ttag";
-                if(!fs.existsSync(ttagCmd) && !fs.existsSync(ttagCmd+".cmd")) {
+                if (!fs.existsSync(ttagCmd) && !fs.existsSync(ttagCmd + ".cmd")) {
                     console.error(`error: can't find ttag file - install via "npm install ttag-cli--save-dev"`);
                 }
             }
