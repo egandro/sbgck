@@ -1,0 +1,9 @@
+{
+    "stopOnSpecFailure": true,
+    "stopSpecOnExpectationFailure": true,
+    "failSpecWithNoExpectations": true,
+    "spec_dir": "spec",
+    "spec_files": [
+        "**/*[sS]pec.ts"
+    ]
+}
