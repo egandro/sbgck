@@ -15,13 +15,19 @@ export interface QueryTokenResult {
     tokens?: Token[];
 }
 
+export interface ManagementNativeAPI {
+    // C++ functions used for the UI
+
+    init(baseDir: string, cameraUrl: string): boolean; // not used from NodeJS
+    oadGame(gameName: string, language: string): boolean; // not used from NodeJS
+    //loadGameList(): string[];
+}
+
 export interface CoreNativeAPI {
     // dummy, native
     type: string;
-    //init(baseDir: string, string cameraUrl): boolean; // not used from NodeJS
-    //loadGame(gameName: string, language: string): boolean; // not used from NodeJS
 
-    // C++ functions
+    // C++ functions in the engine
     playSample(str: string): void;
     playSampleSync(str: string, isLocalized: boolean): void;
     stopAllAudio(): void;
