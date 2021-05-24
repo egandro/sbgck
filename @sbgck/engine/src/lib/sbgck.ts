@@ -30,14 +30,17 @@ class APIDummy implements CoreNativeAPI {
         return true;
     }
 
-    hack2 = true;
+    private calibrationCounter= 0;
     detectColorCalibrationCard(): boolean {
-        if (this.hack2) {
-            this.hack2 = false;
+        const arr = [false, true, true, false];
+        if(this.calibrationCounter>arr.length) {
             return false;
         }
-        // this.hack2 = false;
-        return true;
+
+        const result = arr[this.calibrationCounter];
+        this.calibrationCounter++;
+
+        return result;
     }
 
     hack3 = true;
