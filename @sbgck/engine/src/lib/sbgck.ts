@@ -21,7 +21,7 @@ class APIDummy implements CoreNativeAPI {
         console.log('   background music stopped');
     }
 
-    private hack1 = true;
+    hack1 = true;
     calibrateReferenceFrame(): boolean {
         if (this.hack1) {
             this.hack1 = false;
@@ -30,7 +30,7 @@ class APIDummy implements CoreNativeAPI {
         return true;
     }
 
-    private hack2 = true;
+    hack2 = true;
     detectColorCalibrationCard(): boolean {
         if (this.hack2) {
             this.hack2 = false;
@@ -40,7 +40,7 @@ class APIDummy implements CoreNativeAPI {
         return true;
     }
 
-    private hack3 = true;
+    hack3 = true;
     queryTokens(jsonSting: string): string {
         const param: QueryTokenParam = JSON.parse(jsonSting);
         const obj: QueryTokenResult = {
@@ -86,7 +86,7 @@ export abstract class GameState extends State {
             if (GameState.verboseText) {
                 sample = `   audio [${mp3}] [${role}]: ${text}`;
             } else {
-                sample = `   audio ${str}`;
+                sample = `   audio: ${str}`;
             }
         }
 
@@ -102,7 +102,7 @@ export abstract class GameState extends State {
         let sample = str;
 
         if (GameState.api.type == "dummy") {
-            sample = `   looped background music [${str}]`;
+            sample = `   looped background music: ${str}`;
         }
 
         GameState.api.playSample(sample);
@@ -112,7 +112,7 @@ export abstract class GameState extends State {
         let sample = str;
 
         if (GameState.api.type == "dummy") {
-            sample = `   sfx [${str}]`;
+            sample = `   sfx: ${str}`;
         }
 
         GameState.api.playSample(sample);
