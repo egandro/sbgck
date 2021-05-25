@@ -1,4 +1,4 @@
-const SBGCK = require('../build/Release/desktop');
+const SBGCK = require('../build/Release/glue');
 
 
 SBGCK.init("./", "http://192.168.1.100:8080/video");

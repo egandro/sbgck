@@ -5,7 +5,7 @@
 cmake_minimum_required (VERSION 3.2 FATAL_ERROR)
 
 # Name of the project (will be the name of the plugin)
-project(desktop)
+project(glue)
 
 include(FindGit)
 find_package(Git)
