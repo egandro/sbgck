@@ -53,7 +53,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 # You should add this line in every CMake.js based project
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_JS_INC} ${OpenCV_INCLUDE_DIRS} "cpp/")
 
-
 # Essential library files to link to a node addon
 # You should add this line in every CMake.js based project
 target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} sbgck_core sbgck_opencv soloud)
