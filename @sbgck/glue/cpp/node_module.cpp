@@ -1,6 +1,7 @@
 #include <node.h>
 
 #include <sbgck_opencv/log.hpp>
+#include <sbgck_core/sbgck.hpp>
 #include "hello.hpp"
 
 structlog LOGCFG = {};
@@ -8,8 +9,14 @@ structlog LOGCFG = {};
 namespace sbgck
 {
   using v8::Local;
-  using v8::Object
-  ;
+  using v8::Object;
+
+
+  void whatever() {
+    SBGCK::Engine engine;
+  }
+
+
   void Initialize(Local<Object> exports)
   {
     if (getenv("DEBUG"))
