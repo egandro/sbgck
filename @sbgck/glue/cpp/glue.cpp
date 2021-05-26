@@ -179,7 +179,10 @@ void Glue::Method_StopAllAudio(const FunctionCallbackInfo<Value> &args)
 
     Log(typelog::INFO) << "SBGCK stopAllAudio ()";
 
-    engine.stopAllAudio();
+    bool result = engine.stopAllAudio();
+
+    Local<Boolean> resultValue = Boolean::New(isolate, result);
+    args.GetReturnValue().Set(resultValue);
 }
 
 // bool calibrateReferenceFrame();
