@@ -52,7 +52,10 @@ void Glue::Method_Init(const FunctionCallbackInfo<Value> &args)
 
     Log(typelog::INFO) << "SBGCK init (" << (*applicationDir) << ", " << (*cameraUrl) << ")";
 
-    engine.init((*applicationDir), (*cameraUrl));
+    bool result = engine.init((*applicationDir), (*cameraUrl));
+
+    Local<Boolean> resultValue = Boolean::New(isolate, result);
+    args.GetReturnValue().Set(resultValue);
 }
 
 // bool loadGame(string gameName, string lang);
@@ -91,7 +94,43 @@ void Glue::Method_LoadGame(const FunctionCallbackInfo<Value> &args)
 
     Log(typelog::INFO) << "SBGCK loadGame (" << (*gameName) << ", " << (*lang) << ")";
 
-    engine.loadGame((*gameName), (*lang));
+    bool result = engine.loadGame((*gameName), (*lang));
+
+    Local<Boolean> resultValue = Boolean::New(isolate, result);
+    args.GetReturnValue().Set(resultValue);
+}
+
+// bool loadBoard(string boardName);
+void Glue::Method_LoadBoard(const FunctionCallbackInfo<Value> &args)
+{
+
+    Isolate *isolate = args.GetIsolate();
+
+    // Check the number of arguments passed.
+    if (args.Length() < 1)
+    {
+        // Throw an Error that is passed back to JavaScript
+        isolate->ThrowException(v8::Exception::TypeError(
+            v8::String::NewFromUtf8(isolate, "Wrong number of arguments").ToLocalChecked()));
+        return;
+    }
+
+    // Check the argument types
+    if (!args[0]->IsString() && !args[0]->IsObject())
+    {
+        isolate->ThrowException(v8::Exception::TypeError(
+            v8::String::NewFromUtf8(isolate, "Wrong arguments").ToLocalChecked()));
+        return;
+    }
+
+    v8::String::Utf8Value boardName(isolate, args[0]);
+
+    Log(typelog::INFO) << "SBGCK loadBoard (" << (*boardName) << ")";
+
+    bool result = engine.loadBoard((*boardName));
+
+    Local<Boolean> resultValue = Boolean::New(isolate, result);
+    args.GetReturnValue().Set(resultValue);
 }
 
 // bool playSample(string sampleName);
@@ -121,7 +160,10 @@ void Glue::Method_PlaySample(const FunctionCallbackInfo<Value> &args)
 
     Log(typelog::INFO) << "SBGCK playSample (" << (*sampleName) << ")";
 
-    engine.playSample((*sampleName));
+    bool result = engine.playSample((*sampleName));
+
+    Local<Boolean> resultValue = Boolean::New(isolate, result);
+    args.GetReturnValue().Set(resultValue);
 }
 
 // bool playSampleSync(string sampleName, bool isLocalized);
@@ -160,7 +202,10 @@ void Glue::Method_PlaySampleSync(const FunctionCallbackInfo<Value> &args)
 
     Log(typelog::INFO) << "SBGCK playSampleSync (" << (*sampleName) << ", " << isLocalized << ")";
 
-    engine.playSampleSync((*sampleName), isLocalized);
+    bool result = engine.playSampleSync((*sampleName), isLocalized);
+
+    Local<Boolean> resultValue = Boolean::New(isolate, result);
+    args.GetReturnValue().Set(resultValue);
 }
 
 // void stopAllAudio();

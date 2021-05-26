@@ -19,7 +19,7 @@ export interface ManagementNativeAPI {
     // C++ functions used for the UI
 
     init(baseDir: string, cameraUrl: string): boolean; // not used from NodeJS
-    oadGame(gameName: string, language: string): boolean; // not used from NodeJS
+    loadGame(gameName: string, language: string): boolean; // not used from NodeJS
     //loadGameList(): string[];
 }
 
