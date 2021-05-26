@@ -9,16 +9,24 @@ class APIDummy implements CoreNativeAPI {
         Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
     }
 
-    playSample(str: string): void {
+    loadBoard(str: string): boolean {
         console.log(str);
+        return true;
     }
 
-    playSampleSync(str: string, isLocalized: boolean): void {
+    playSample(str: string): boolean {
         console.log(str);
+        return true;
     }
 
-    stopAllAudio(): void {
+    playSampleSync(str: string, isLocalized: boolean): boolean {
+        console.log(str);
+        return true;
+    }
+
+    stopAllAudio(): boolean {
         console.log('   background music stopped');
+        return true;
     }
 
     hack1 = true;
@@ -72,7 +80,17 @@ export abstract class GameState extends State {
     public static api: CoreNativeAPI = new APIDummy();
     public static verboseText: boolean = true;
 
-    text(str: string): void {
+    loadBoard(str: string): boolean {
+        let board = str;
+
+        if (GameState.api.type == "dummy") {
+            board = `   loading board: ${str}`;
+        }
+
+        return GameState.api.loadBoard(board);
+    }
+
+    text(str: string): boolean {
         const message = PoTools.getMessage(str);
 
         const mp3 = message.mp3;
@@ -93,36 +111,36 @@ export abstract class GameState extends State {
             }
         }
 
-        GameState.api.playSampleSync(sample, true);
+        return GameState.api.playSampleSync(sample, true);
     }
 
-    randomText(...args: string[]): void {
+    randomText(...args: string[]): boolean {
         const i = Math.floor(Math.random() * args.length);
-        this.text(args[i]);
+        return this.text(args[i]);
     }
 
-    bgMusic(str: string): void {
+    bgMusic(str: string): boolean {
         let sample = str;
 
         if (GameState.api.type == "dummy") {
             sample = `   looped background music: ${str}`;
         }
 
-        GameState.api.playSample(sample);
+        return GameState.api.playSample(sample);
     }
 
-    sfx(str: string): void {
+    sfx(str: string): boolean {
         let sample = str;
 
         if (GameState.api.type == "dummy") {
             sample = `   sfx: ${str}`;
         }
 
-        GameState.api.playSample(sample);
+        return GameState.api.playSample(sample);
     }
 
-    stopAllAudio(): void {
-        GameState.api.stopAllAudio();
+    stopAllAudio(): boolean {
+        return GameState.api.stopAllAudio();
     }
 
     delay(ms: number): void {

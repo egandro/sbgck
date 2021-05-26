@@ -28,9 +28,10 @@ export interface CoreNativeAPI {
     type: string;
 
     // C++ functions in the engine
-    playSample(str: string): void;
-    playSampleSync(str: string, isLocalized: boolean): void;
-    stopAllAudio(): void;
+    loadBoard(str: string): boolean;
+    playSample(str: string): boolean;
+    playSampleSync(str: string, isLocalized: boolean): boolean;
+    stopAllAudio(): boolean;
     calibrateReferenceFrame(): boolean;
     detectColorCalibrationCard(): boolean;
     //queryTokens(param: QueryTokenParam): QueryTokenResult;
