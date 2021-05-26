@@ -28,7 +28,7 @@ export interface CoreNativeAPI {
     type: string;
 
     // C++ functions in the engine
-    loadBoard(str: string): boolean;
+    setBoard(str: string): boolean;
     playSample(str: string): boolean;
     playSampleSync(str: string, isLocalized: boolean): boolean;
     stopAllAudio(): boolean;

@@ -23,7 +23,7 @@ namespace SBGCK
     }
     NODE_SET_METHOD(exports, "init", Glue::Method_Init);
     NODE_SET_METHOD(exports, "loadGame", Glue::Method_LoadGame);
-    NODE_SET_METHOD(exports, "loadBoard", Glue::Method_LoadBoard);
+    NODE_SET_METHOD(exports, "setBoard", Glue::Method_SetBoard);
     NODE_SET_METHOD(exports, "playSample", Glue::Method_PlaySample);
     NODE_SET_METHOD(exports, "playSampleSync", Glue::Method_PlaySampleSync);
     NODE_SET_METHOD(exports, "stopAllAudio", Glue::Method_StopAllAudio);

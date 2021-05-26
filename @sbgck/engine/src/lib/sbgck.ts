@@ -9,7 +9,7 @@ class APIDummy implements CoreNativeAPI {
         Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
     }
 
-    loadBoard(str: string): boolean {
+    setBoard(str: string): boolean {
         console.log(str);
         return true;
     }
@@ -80,14 +80,14 @@ export abstract class GameState extends State {
     public static api: CoreNativeAPI = new APIDummy();
     public static verboseText: boolean = true;
 
-    loadBoard(str: string): boolean {
+    setBoard(str: string): boolean {
         let board = str;
 
         if (GameState.api.type == "dummy") {
-            board = `   loading board: ${str}`;
+            board = `   set board: ${str}`;
         }
 
-        return GameState.api.loadBoard(board);
+        return GameState.api.setBoard(board);
     }
 
     text(str: string): boolean {

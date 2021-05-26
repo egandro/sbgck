@@ -100,8 +100,8 @@ void Glue::Method_LoadGame(const FunctionCallbackInfo<Value> &args)
     args.GetReturnValue().Set(resultValue);
 }
 
-// bool loadBoard(string boardName);
-void Glue::Method_LoadBoard(const FunctionCallbackInfo<Value> &args)
+// bool setBoard(string boardName);
+void Glue::Method_SetBoard(const FunctionCallbackInfo<Value> &args)
 {
 
     Isolate *isolate = args.GetIsolate();
@@ -125,9 +125,9 @@ void Glue::Method_LoadBoard(const FunctionCallbackInfo<Value> &args)
 
     v8::String::Utf8Value boardName(isolate, args[0]);
 
-    Log(typelog::INFO) << "SBGCK loadBoard (" << (*boardName) << ")";
+    Log(typelog::INFO) << "SBGCK setBoard (" << (*boardName) << ")";
 
-    bool result = engine.loadBoard((*boardName));
+    bool result = engine.setBoard((*boardName));
 
     Local<Boolean> resultValue = Boolean::New(isolate, result);
     args.GetReturnValue().Set(resultValue);

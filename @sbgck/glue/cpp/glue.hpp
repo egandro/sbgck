@@ -14,7 +14,7 @@ namespace SBGCK
   public:
     static void Method_Init(const FunctionCallbackInfo<Value> &args);
     static void Method_LoadGame(const FunctionCallbackInfo<Value> &args);
-    static void Method_LoadBoard(const FunctionCallbackInfo<Value> &args);
+    static void Method_SetBoard(const FunctionCallbackInfo<Value> &args);
     static void Method_PlaySample(const FunctionCallbackInfo<Value> &args);
     static void Method_PlaySampleSync(const FunctionCallbackInfo<Value> &args);
     static void Method_StopAllAudio(const FunctionCallbackInfo<Value> &args);
