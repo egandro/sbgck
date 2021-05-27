@@ -12,6 +12,10 @@
 - The game language used will Typescript powered by nodejs
 - SBGCJ supports nodejs debugging (where available). There will be also some print based logger.
 
+## C++ signal slots
+
+- https://schneegans.github.io/tutorials/2015/09/20/signal-slot
+- http://schneegans.github.io/tutorials/2015/09/21/properties
 
 ## SBGCK game files
 
