@@ -2,7 +2,15 @@
 #ifndef GLUE_HPP
 #define GLUE_HPP
 
+#ifdef _WIN32
+#pragma warning( push )
+#pragma warning( disable : 4251 )
+#pragma warning( disable : 4275 )
+#endif
 #include <node.h>
+#ifdef _WIN32
+#pragma warning( pop )
+#endif
 
 namespace SBGCK
 {

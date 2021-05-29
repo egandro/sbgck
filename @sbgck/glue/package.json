@@ -12,9 +12,11 @@
     "build": "tsc",
     "build:debug": "echo node-gyp build",
     "build:release": "echo node-gyp rebuild",
-    "buildcpp": "cmake-js build",
-    "rebuildcpp": "cmake-js rebuild",
-    "install": "cmake-js compile"
+    "buildcpp": "cmake-js",
+    "rebuildcpp": "cmake-js",
+    "buildcpp:debug": "cmake-js -D build",
+    "rebuildcpp:debug": "cmake-js -D rebuild",
+    "install": "cmake-js -D compile"
   },
   "author": "",
   "license": "ISC",
