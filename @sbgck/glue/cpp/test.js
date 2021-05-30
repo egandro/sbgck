@@ -26,7 +26,19 @@ console.log("calibrateReferenceFrame: ", SBGCK.calibrateReferenceFrame());
 // console.log("detectColorCalibrationCard:", SBGCK.detectColorCalibrationCard());
 console.log('Press any key to continue.');
 process.stdin.once('data', function () {
-    console.log("queryTokens:", SBGCK.queryTokens('{ "ROI": [ ], "timeout": 200, "names": [ "Blue Triangle", "Red Circle", "Green Hexagon" ] }'));
+
+    const cfg = {
+        ROI: [],
+        timeout: 200,
+        //names: ["Blue Triangle", "Red Circle", "Green Hexagon"],
+        names: ["Green Hexagon"],
+        // showColorDiff: false,
+        // showAllROIs: false,
+        // showContours: true
+    };
+
+    const jsonStr = JSON.stringify(cfg);
+    console.log("queryTokens:", SBGCK.queryTokens(jsonStr));
 
     console.log("bye.");
 });
