@@ -22,7 +22,7 @@ void Glue::Method_Init(const FunctionCallbackInfo<Value> &args)
     Isolate *isolate = args.GetIsolate();
 
     // Check the number of arguments passed.
-    if (args.Length() < 2)
+    if (args.Length() < 2 || args.Length() > 3)
     {
         // Throw an Error that is passed back to JavaScript
         isolate->ThrowException(v8::Exception::TypeError(
@@ -50,9 +50,26 @@ void Glue::Method_Init(const FunctionCallbackInfo<Value> &args)
 
     v8::String::Utf8Value cameraUrl(isolate, args[1]);
 
+    bool useDebugCalibrationCache = false; // default value of optional parameter
+
+    if (args.Length() == 3)
+    {
+        // optional parameter
+
+        // Check the argument types
+        if (!args[2]->IsBoolean() && !args[2]->IsObject())
+        {
+            isolate->ThrowException(v8::Exception::TypeError(
+                v8::String::NewFromUtf8(isolate, "Wrong arguments").ToLocalChecked()));
+            return;
+        }
+
+        useDebugCalibrationCache = args[2].As<Boolean>()->Value();
+    }
+
     Log(typelog::INFO) << "SBGCK init (" << (*applicationDir) << ", " << (*cameraUrl) << ")";
 
-    bool result = engine.init((*applicationDir), (*cameraUrl));
+    bool result = engine.init((*applicationDir), (*cameraUrl), useDebugCalibrationCache);
 
     Local<Boolean> resultValue = Boolean::New(isolate, result);
     args.GetReturnValue().Set(resultValue);

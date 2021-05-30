@@ -60,6 +60,7 @@
         "valarray": "cpp",
         "xstring": "cpp",
         "regex": "cpp",
-        "xlocale": "cpp"
+        "xlocale": "cpp",
+        "ios": "cpp"
     }
 }

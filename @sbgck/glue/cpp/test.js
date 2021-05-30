@@ -4,14 +4,16 @@ const SBGCK = require('../build/Debug/glue');
 // console.log('Press any key to continue.');
 // process.stdin.once('data', function () {
 
-SBGCK.init(__dirname + "/..", "http://192.168.1.100:8080/video");
+SBGCK.init(__dirname + "/..", "http://192.168.1.100:8080/video", true);
 if (!SBGCK.loadGame("dev_game", "en")) {
     process.exit(1);
 }
-SBGCK.setBoard("Arctic");
+console.log("setBoard", SBGCK.setBoard("Arctic"));
 // // Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5000);
 // // console.log("xxxxxxxxxxxx");
 // SBGCK.playSampleSync("Win sound.ogg", false);
+SBGCK.playSample("Win sound.ogg");
+// SBGCK.playSample("lose sound 1_0.ogg");
 // // Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5000);
 // // console.log("yyyyyyyyyyyy");
 
@@ -22,7 +24,8 @@ SBGCK.setBoard("Arctic");
 // SBGCK.stopAllAudio();
 // console.log("All Audio stopped");
 console.log("calibrateReferenceFrame: ", SBGCK.calibrateReferenceFrame());
-// console.log("detectColorCalibrationCard:", SBGCK.detectColorCalibrationCard());
+console.log("detectColorCalibrationCard:", SBGCK.detectColorCalibrationCard());
+
 console.log('Press any key to continue.');
 process.stdin.once('data', function () {
 
@@ -31,8 +34,8 @@ process.stdin.once('data', function () {
         timeout: 200,
         //names: ["Blue Triangle", "Red Circle", "Green Hexagon"],
         names: ["Green Hexagon"],
-        // showColorDiff: false,
-        // showAllROIs: false,
+        // showColorDiff: true,
+        // showAllROIs: true,
         // showContours: true
     };
 
