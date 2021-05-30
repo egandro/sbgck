@@ -34,8 +34,13 @@ endif()
 include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
 link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 
+#ExternalProject_Add(sbgck_core_lib
+#    GIT_REPOSITORY https://github.com/egandro/sbgck-core
+#    CMAKE_ARGS -DEXTERNAL_INSTALL_LOCATION=${EXTERNAL_INSTALL_LOCATION} -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
+#)
+
 ExternalProject_Add(sbgck_core_lib
-    GIT_REPOSITORY https://github.com/egandro/sbgck-core
+    SOURCE_DIR ${CMAKE_SOURCE_DIR}/sbgck-core
     CMAKE_ARGS -DEXTERNAL_INSTALL_LOCATION=${EXTERNAL_INSTALL_LOCATION} -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
 )
 

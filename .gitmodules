@@ -1,0 +1,3 @@
+[submodule "@sbgck/glue/sbgck-core"]
+	path = @sbgck/glue/sbgck-core
+	url = https://github.com/egandro/sbgck-core.git

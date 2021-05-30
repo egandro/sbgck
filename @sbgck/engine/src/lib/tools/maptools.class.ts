@@ -93,7 +93,7 @@ export class MapTools {
             }
             const item = {
                 shape: area["shape"],
-                chords: area["coords"],
+                coords: area["coords"],
                 target: area["target"],
             }
             result.map.push(item);
