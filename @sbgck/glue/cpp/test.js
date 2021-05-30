@@ -40,4 +40,5 @@ process.stdin.once('data', function () {
     console.log("queryTokens:", SBGCK.queryTokens(jsonStr));
 
     console.log("bye.");
+    process.exit(0);
 });
