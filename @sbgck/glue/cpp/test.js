@@ -9,20 +9,19 @@ if (!SBGCK.loadGame("dev_game", "en")) {
     process.exit(1);
 }
 console.log("setBoard", SBGCK.setBoard("Arctic"));
-// // Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5000);
-// // console.log("xxxxxxxxxxxx");
 // SBGCK.playSampleSync("Win sound.ogg", false);
-SBGCK.playSample("Win sound.ogg");
+// SBGCK.playSample("Win sound.ogg");
 // SBGCK.playSample("lose sound 1_0.ogg");
-// // Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5000);
-// // console.log("yyyyyyyyyyyy");
 
 // SBGCK.playSample("Ove - Earth Is All We Have .ogg");
 // Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 2000);
+
 // SBGCK.playSampleSync("b5871680917bf331af1dc64ce7388e75.mp3", true);
 // Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10000);
+
 // SBGCK.stopAllAudio();
 // console.log("All Audio stopped");
+
 console.log("calibrateReferenceFrame: ", SBGCK.calibrateReferenceFrame());
 console.log("detectColorCalibrationCard:", SBGCK.detectColorCalibrationCard());
 
