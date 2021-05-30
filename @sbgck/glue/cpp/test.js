@@ -4,8 +4,7 @@ const SBGCK = require('../build/Debug/glue');
 // console.log('Press any key to continue.');
 // process.stdin.once('data', function () {
 
-// TODO: fix this path crap
-SBGCK.init(__dirname.replace(/\\/g, "/") + "/..", "http://192.168.1.100:8080/video");
+SBGCK.init(__dirname + "/..", "http://192.168.1.100:8080/video");
 if (!SBGCK.loadGame("dev_game", "en")) {
     process.exit(1);
 }
