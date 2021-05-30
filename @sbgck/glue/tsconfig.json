@@ -9,6 +9,8 @@
     "esModuleInterop": true
   },
   "exclude": [
+    "cpp",
+    "sbgck-core",
     "node_modules",
     "dist"
   ]
