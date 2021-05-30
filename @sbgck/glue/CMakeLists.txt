@@ -19,6 +19,11 @@ include(ExternalProject)
 # opencv
 find_package(OpenCV REQUIRED)
 
+if(UNIX AND NOT APPLE)
+    # on Linux
+    set(SYSTEM_LIBRARIES stdc++fs asound) # required for filesystem streams on g++
+endif()
+
 IF(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # idea from here - https://stackoverflow.com/questions/15100351/changing-cmake-cxx-flags-in-project
     SET ( CMAKE_CXX_FLAGS "-Wno-psabi" )
@@ -60,6 +65,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_JS_INC} ${OpenCV_INCL
 
 # Essential library files to link to a node addon
 # You should add this line in every CMake.js based project
-target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} sbgck_core sbgck_opencv soloud)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} sbgck_core sbgck_opencv soloud ${SYSTEM_LIBRARIES})
 
 add_dependencies(${PROJECT_NAME} sbgck_core_lib)
