@@ -237,6 +237,10 @@ Single File: https://github.com/mattiasgustavsson/libs assetsys <<< THIS one
 - https://freesound.org/
 - https://superdevresources.com/free-music-sound-effects-games/
 
+# Normalize Audio
+
+- https://github.com/Moonbase59/loudgain/blob/master/docs/loudgain.1.md#recommendations
+
 # OpenCV Finger counting
 
 - https://www.youtube.com/watch?v=p5Z_GGRCI5s
