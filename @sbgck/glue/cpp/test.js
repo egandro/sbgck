@@ -1,5 +1,5 @@
-// const SBGCK = require('../build/Release/glue');
-const SBGCK = require('../build/Debug/glue');
+const SBGCK = require('../build/Release/glue');
+// const SBGCK = require('../build/Debug/glue');
 
 // console.log('Press any key to continue.');
 // process.stdin.once('data', function () {
@@ -21,26 +21,41 @@ console.log("setBoard", SBGCK.setBoard("Arctic"));
 
 // SBGCK.stopAllAudio();
 // console.log("All Audio stopped");
-
-console.log("calibrateReferenceFrame: ", SBGCK.calibrateReferenceFrame());
-console.log("detectColorCalibrationCard:", SBGCK.detectColorCalibrationCard());
-
 console.log('Press any key to continue.');
 process.stdin.once('data', function () {
 
-    const cfg = {
-        ROI: [],
-        timeout: 200,
-        //names: ["Blue Triangle", "Red Circle", "Green Hexagon"],
-        names: ["Green Hexagon"],
-        // showColorDiff: true,
-        // showAllROIs: true,
-        // showContours: true
-    };
+    console.log("calibrateReferenceFrame: ", SBGCK.calibrateReferenceFrame());
 
-    const jsonStr = JSON.stringify(cfg);
-    console.log("queryTokens:", SBGCK.queryTokens(jsonStr));
+    console.log('Press any key to continue.');
+    process.stdin.once('data', function () {
 
-    console.log("bye.");
-    process.exit(0);
+        console.log("detectColorCalibrationCard:", SBGCK.detectColorCalibrationCard(true));
+
+        console.log('Press any key to continue.');
+        process.stdin.once('data', function () {
+
+            while(true) {
+
+                const cfg = {
+                    ROI: [],
+                    timeout: 200,
+                    names: ["Blue Circle", "Red Triangle", "Green Hexagon"],
+                    //names: ["Green Hexagon"],
+                    // showColorDiff: true,
+                    // showAllROIs: true,
+                    // showContours: true
+                };
+
+                const jsonStr = JSON.stringify(cfg);
+                console.log("queryTokens:", SBGCK.queryTokens(jsonStr));
+
+            }
+
+            console.log("bye.");
+            process.exit(0);
+        });
+
+    });
+
+
 });

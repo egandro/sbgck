@@ -120,7 +120,6 @@ void Glue::Method_LoadGame(const FunctionCallbackInfo<Value> &args)
 // bool setBoard(string boardName);
 void Glue::Method_SetBoard(const FunctionCallbackInfo<Value> &args)
 {
-
     Isolate *isolate = args.GetIsolate();
 
     // Check the number of arguments passed.
@@ -275,7 +274,7 @@ void Glue::Method_DetectColorCalibrationCard(const FunctionCallbackInfo<Value> &
     Isolate *isolate = args.GetIsolate();
 
     // Check the number of arguments passed.
-    if (args.Length() != 0)
+    if (args.Length() > 1)
     {
         // Throw an Error that is passed back to JavaScript
         isolate->ThrowException(v8::Exception::TypeError(
@@ -283,9 +282,26 @@ void Glue::Method_DetectColorCalibrationCard(const FunctionCallbackInfo<Value> &
         return;
     }
 
+    bool showDebugFrame = false; // default value of optional parameter
+
+    if (args.Length() == 1)
+    {
+        // optional parameter
+
+        // Check the argument types
+        if (!args[0]->IsBoolean() && !args[0]->IsObject())
+        {
+            isolate->ThrowException(v8::Exception::TypeError(
+                v8::String::NewFromUtf8(isolate, "Wrong arguments").ToLocalChecked()));
+            return;
+        }
+
+        showDebugFrame = args[0].As<Boolean>()->Value();
+    }
+
     Log(typelog::INFO) << "SBGCK detectColorCalibrationCard ()";
 
-    bool result = engine.detectColorCalibrationCard();
+    bool result = engine.detectColorCalibrationCard(showDebugFrame);
 
     Local<Boolean> resultValue = Boolean::New(isolate, result);
     args.GetReturnValue().Set(resultValue);
