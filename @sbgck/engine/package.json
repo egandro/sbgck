@@ -20,7 +20,7 @@
     "fast-xml-parser": "^3.19.0",
     "hasbin": "^1.2.3",
     "javascript-state-machine": "^3.1.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.0.0",
     "pofile": "^1.1.1",
     "string-strip-html": "^8.2.13",
     "ttag": "^1.7.24",
