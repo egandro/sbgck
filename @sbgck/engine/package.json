@@ -17,7 +17,7 @@
     "@types/node": "^14.14.31",
     "adm-zip": "^0.5.5",
     "export-to-csv": "^0.2.1",
-    "fast-xml-parser": "^3.19.0",
+    "fast-xml-parser": "^4.0.0",
     "hasbin": "^1.2.3",
     "javascript-state-machine": "^3.1.0",
     "node-fetch": "^2.6.1",
